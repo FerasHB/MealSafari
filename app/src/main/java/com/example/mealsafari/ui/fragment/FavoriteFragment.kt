@@ -1,4 +1,4 @@
-package com.example.mealsafari.ui.Fragmente
+package com.example.mealsafari.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.mealsafari.databinding.FavoriteFragmentBinding
-import com.example.mealsafari.databinding.WelcomeFragmentBinding
 
 class FavoriteFragment:Fragment() {
     private lateinit var binding: FavoriteFragmentBinding

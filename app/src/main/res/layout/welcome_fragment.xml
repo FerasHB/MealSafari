@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+
     >
 
+    <androidx.fragment.app.FragmentContainerView
+
+        android:id="@+id/fragmentContainerViewWelcome"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -32,54 +46,40 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/lobster"
-        android:text="Hello, Explore Your Dream Food"
+        android:text="Welcome Chef, Explore Your Dream Food"
         android:textAlignment="center"
         android:textColor="@color/button"
-        android:textSize="26sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/btRegister"
+        android:id="@+id/btGetStarted"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="384dp"
-        android:backgroundTint="@color/button2"
+        android:layout_marginBottom="120dp"
+        android:backgroundTint="@color/button"
         android:shadowColor="@color/black"
-        android:text="Log In"
-        android:textColor="#131313"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintWidth_percent=".8" />
 
-    <Button
-        android:id="@+id/btGst"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/button2"
-        android:shadowColor="@color/black"
-        android:text="Countinue Without Log In"
-
+        android:text="Get Started"
         android:textColor="#222B63"
         android:textSize="14dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/btRegister"
-        app:layout_constraintStart_toStartOf="@+id/btRegister"
-        app:layout_constraintTop_toBottomOf="@+id/btRegister"
+        app:layout_constraintBottom_toBottomOf="@+id/fragmentContainerViewWelcome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent=".8" />
 
 

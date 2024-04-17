@@ -50,4 +50,25 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.0")
+
+    //intuit
+    implementation ("com.intuit.sdp:sdp-android:1.0.6")
+    implementation ("com.intuit.ssp:ssp-android:1.0.6")
+
+    //gif
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
+    //Load
+    implementation("io.coil-kt:coil:2.5.0")
+    //ViewModel
+
+   /* implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    implementation ("android.arch.lifecycle:extensions:1.1.0")*/
+
+
 }
