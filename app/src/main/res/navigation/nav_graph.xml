@@ -18,4 +18,8 @@
         android:id="@+id/favoriteFragment"
         android:name="com.example.mealsafari.ui.fragment.FavoriteFragment"
         android:label="FavoriteFragment" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.mealsafari.ui.fragment.DetailFragment"
+        android:label="DetailFragment" />
 </navigation>

@@ -12,12 +12,19 @@ class MealViewModel:ViewModel() {
 
     val randomMeal = repository.randomMeal
 
+    val PopularMeal = repository.mealPopular
 
 
 
     fun loadRandomMeal() {
         viewModelScope.launch {
             repository.getRandomMeal()
+        }
+    }
+
+    fun loadPopularMeal(category :String){
+        viewModelScope.launch {
+            repository.getMealPopular(category)
         }
     }
 }
