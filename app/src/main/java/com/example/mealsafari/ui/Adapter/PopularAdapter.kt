@@ -2,14 +2,18 @@ package com.example.mealsafari.ui.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.R
 import com.example.mealsafari.databinding.PopularItemsBinding
 import com.example.mealsafari.ui.Data.MealPopular
+import syntax.com.playground.data.model.meal.Meal
 
-class PopularAdapter(val viewModel: MealViewModel, val mealPopular: List<MealPopular>) :
+class PopularAdapter( val meals: List<MealPopular>) :
     RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
+//    private lateinit var onItemClick: OnItemClick
+//    private var mealsList: List<MealPopular> = ArrayList()
 
 
     inner class PopularViewHolder(val binding: PopularItemsBinding) :
@@ -21,13 +25,26 @@ class PopularAdapter(val viewModel: MealViewModel, val mealPopular: List<MealPop
     }
 
     override fun getItemCount(): Int {
-        return mealPopular.size
+        return meals.size
     }
 
     override fun onBindViewHolder(holder: PopularViewHolder, position: Int) {
-        val mealPopular = mealPopular[position]
-        viewModel.loadPopularMeal(mealPopular.mealImage)
-        holder.binding.imgPopularMeal.load(mealPopular.mealName)
+        val mealPopular = meals[position]
+        holder.binding.apply {
 
+        }
+
+        holder.binding.imgPopularMeal.load(mealPopular.mealImage)
+       holder.binding.root.setOnClickListener {
+            holder.binding.imgPopularMeal.findNavController().navigate(R.id.detailFragment)
+        }
+
+        /*holder.itemView.setOnClickListener {
+            onItemClick.onItemClick(mealsList[position])
+        }*/
+    }
+
+    interface OnItemClick{
+        fun onItemClick(meal: MealPopular)
     }
 }

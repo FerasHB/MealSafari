@@ -107,6 +107,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:layout_marginStart="32dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:layout_marginEnd="10dp"
                     app:layout_constraintEnd_toEndOf="@+id/tv_over_popular"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -130,6 +132,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_25sdp"
                     android:layout_marginEnd="@dimen/_25sdp"
@@ -141,8 +144,12 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rec_view_categories"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+
+                        app:spanCount="3"
+                        android:orientation="vertical"
                         android:scrollbars="none" />
 
                 </androidx.cardview.widget.CardView>

@@ -1,5 +1,6 @@
 package com.example.mealsafari.API
 
+import com.example.mealsafari.ui.Data.CategoryList
 import com.example.mealsafari.ui.Data.MealList
 import com.example.mealsafari.ui.Data.MealPopularResult
 import com.squareup.moshi.Moshi
@@ -28,6 +29,9 @@ interface ApiService{
 
     @GET("filter.php?")
     suspend fun getPopularItem(@Query("c")category: String):MealPopularResult
+
+    @GET("categories.php")
+    suspend fun getAllMealCategories(): CategoryList
 
 
 }
