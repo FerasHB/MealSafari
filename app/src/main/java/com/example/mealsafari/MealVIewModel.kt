@@ -16,6 +16,8 @@ class MealViewModel:ViewModel() {
 
     val allMealCategories = repository.mealCategories
 
+    val getMealsByCategory = repository.mealBYCategories
+
 
 
 
@@ -35,6 +37,12 @@ class MealViewModel:ViewModel() {
     fun loadAllMealCategories() {
         viewModelScope.launch {
             repository.getAllMealCategories()
+        }
+    }
+
+    fun loadMealByCategory(category: String){
+        viewModelScope.launch {
+            repository.getMealsByCategory(category)
         }
     }
 }

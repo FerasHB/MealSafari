@@ -33,6 +33,9 @@ interface ApiService{
     @GET("categories.php")
     suspend fun getAllMealCategories(): CategoryList
 
+    @GET("filter.php")
+    suspend fun getMealsByCategory(@Query("c")category: String):MealList
+
 
 }
 

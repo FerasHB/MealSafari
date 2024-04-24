@@ -2,12 +2,15 @@ package com.example.mealsafari.ui.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.R
 import com.example.mealsafari.databinding.CategoryItemBinding
 import com.example.mealsafari.databinding.PopularItemsBinding
 import com.example.mealsafari.ui.Data.Category
+import syntax.com.playground.data.model.meal.Meal
 
 class CategoryAdapter(val mealCategory: List<Category>) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
@@ -33,5 +36,11 @@ class CategoryAdapter(val mealCategory: List<Category>) :
             imgCategory.load(mealCategory.categoryImage)
             tvCategoryName.text = mealCategory.categoryName
         }
+        holder.itemView.setOnClickListener {
+    //    holder.binding.imgCategory.findNavController().navigate(R.id.categoryMealsFragment)
+        }
+
     }
+
+
 }

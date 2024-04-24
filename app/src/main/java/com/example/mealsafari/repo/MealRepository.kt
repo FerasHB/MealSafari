@@ -21,10 +21,13 @@ class MealRepository(private val apiService: MealApi) {
         get() = _mealPopular
 
 
-    private var _mealCategories = MutableLiveData<List<Category>>()
-    val mealCategories: LiveData<List<Category>>
+    private var _mealCategories = MutableLiveData<List<Meal>>()
+    val mealCategories: LiveData<List<Meal>>
         get() = _mealCategories
 
+    private var _mealByCategories = MutableLiveData<List<Category>>()
+    val mealBYCategories: LiveData<List<Category>>
+        get() = _mealByCategories
 
     suspend fun getRandomMeal() {
         try {
@@ -49,7 +52,16 @@ class MealRepository(private val apiService: MealApi) {
     suspend fun getAllMealCategories() {
         try {
             val result = apiService.retrofitService.getAllMealCategories()
-            _mealCategories.postValue(result.categories)
+            _mealByCategories.postValue(result.categories)
+        } catch(e:Exception) {
+            Log.e(TAG, "Error loading Data from API getAllMealCategories(): $e")
+        }
+    }
+
+    suspend fun getMealsByCategory(category: String){
+        try {
+            val result = apiService.retrofitService.getMealsByCategory(category)
+            _mealCategories.postValue(result.meals)
         } catch(e:Exception) {
             Log.e(TAG, "Error loading Data from API getAllMealCategories(): $e")
         }

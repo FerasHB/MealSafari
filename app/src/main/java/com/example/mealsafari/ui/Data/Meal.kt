@@ -15,11 +15,11 @@ data class Meal(
     val area: String = "",
 
     @Json(name = "strMealThumb")
-    val image: String,
+    val image: String="",
 
     @Json(name = "strInstructions")
-    val instruction :String,
+    val instruction :String="",
 
     @Json(name = "strYoutube")
-    val video : String
+    val video : String=""
 )

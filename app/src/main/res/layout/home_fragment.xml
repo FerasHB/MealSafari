@@ -132,10 +132,9 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_25sdp"
-                    android:layout_marginEnd="@dimen/_25sdp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     app:cardCornerRadius="@dimen/_10sdp"
                     app:cardUseCompatPadding="true"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -144,13 +143,13 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rec_view_categories"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-
-                        app:spanCount="3"
+                        android:layout_height="160dp"
                         android:orientation="vertical"
-                        android:scrollbars="none" />
+                        android:scrollbars="none"
+
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="3" />
 
                 </androidx.cardview.widget.CardView>
 

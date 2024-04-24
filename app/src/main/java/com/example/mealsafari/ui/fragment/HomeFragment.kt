@@ -60,8 +60,12 @@ class HomeFragment : Fragment() {
             binding.recViewMealPopular.adapter = PopularAdapter(popularMeals)
         }
 
-        viewModel.allMealCategories.observe(viewLifecycleOwner) { categoryMeal ->
-            binding.recViewCategories.adapter = CategoryAdapter(categoryMeal)
+        viewModel.getMealsByCategory.observe(viewLifecycleOwner) {
+            binding.recViewCategories.adapter = CategoryAdapter(it)
+        }
+
+       binding.recViewCategories.setOnClickListener {
+            findNavController().navigate(R.id.categoryMealsFragment)
         }
 
 
