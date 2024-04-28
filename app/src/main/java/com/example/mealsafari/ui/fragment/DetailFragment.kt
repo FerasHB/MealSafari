@@ -13,7 +13,6 @@ import coil.load
 import com.example.mealsafari.MealViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.FragmentDetailBinding
-import com.example.mealsafari.databinding.HomeFragmentBinding
 import syntax.com.playground.data.model.meal.Meal
 
 class DetailFragment : Fragment() {
@@ -34,6 +33,7 @@ class DetailFragment : Fragment() {
     // Diese Methode wird aufgerufen, sobald die View für dieses Fragment erstellt wurde.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         // Beobachten Sie das LiveData-Objekt randomMeal aus dem ViewModel
         viewModel.randomMeal.observe(viewLifecycleOwner) { mealObj: Meal ->

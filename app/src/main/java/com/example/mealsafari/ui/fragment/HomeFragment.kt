@@ -20,16 +20,6 @@ import syntax.com.playground.data.model.meal.Meal
 
 class HomeFragment : Fragment() {
 
-    companion object{
-        const val MEAL_ID="com.example.MealSafari.ui.fragments.idMeal"
-        const val MEAL_NAME="com.example.MealSafari.ui.fragments.nameMeal"
-        const val MEAL_THUMB="com.example.MealSafari.ui.fragments.thumbMeal"
-        const val CATEGORY_NAME=" com.example.MealSafari.ui.fragments.categoryName"
-        const val MEAL_STR=" com.example.MealSafari.ui.fragments.strMeal"
-        const val MEAL_AREA=" com.example.MealSafari.ui.fragments.strArea"
-
-
-    }
 
     private lateinit var binding: HomeFragmentBinding
     private val viewModel: MealViewModel by activityViewModels()
@@ -47,7 +37,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadRandomMeal()
-        viewModel.loadPopularMeal("Seafood")
+        viewModel.loadPopularMeal("Side")
         viewModel.loadAllMealCategories()
         viewModel.randomMeal.observe(viewLifecycleOwner) { mealObj: Meal ->
             binding.imgRandomMeal.load(mealObj.image)
@@ -57,7 +47,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.detailFragment)
         }
         viewModel.PopularMeal.observe(viewLifecycleOwner) { popularMeals ->
-            binding.recViewMealPopular.adapter = PopularAdapter(popularMeals)
+            binding.recViewMealPopular.adapter = PopularAdapter(popularMeals,viewModel)
         }
 
         viewModel.getMealsByCategory.observe(viewLifecycleOwner) {
@@ -67,6 +57,7 @@ class HomeFragment : Fragment() {
        binding.recViewCategories.setOnClickListener {
             findNavController().navigate(R.id.categoryMealsFragment)
         }
+
 
 
     }

@@ -1,19 +1,21 @@
 package com.example.mealsafari.ui.Adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.mealsafari.MealViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.PopularItemsBinding
-import com.example.mealsafari.ui.Data.MealPopular
 import syntax.com.playground.data.model.meal.Meal
 
-class PopularAdapter( val meals: List<MealPopular>) :
+const val DETAIL= "DETAIL"
+
+class PopularAdapter( val meals: List<Meal>, val viewModel : MealViewModel) :
     RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
-//    private lateinit var onItemClick: OnItemClick
-//    private var mealsList: List<MealPopular> = ArrayList()
+
 
 
     inner class PopularViewHolder(val binding: PopularItemsBinding) :
@@ -30,21 +32,24 @@ class PopularAdapter( val meals: List<MealPopular>) :
 
     override fun onBindViewHolder(holder: PopularViewHolder, position: Int) {
         val mealPopular = meals[position]
-        holder.binding.apply {
 
-        }
 
-        holder.binding.imgPopularMeal.load(mealPopular.mealImage)
+        holder.binding.imgPopularMeal.load(mealPopular.image)
        holder.binding.root.setOnClickListener {
-            holder.binding.imgPopularMeal.findNavController().navigate(R.id.detailFragment)
+
+
+
+           val bundle = Bundle()
+           bundle.putSerializable("detail",mealPopular)
+           holder.binding.imgPopularMeal.findNavController().navigate(R.id.action_homeFragment_to_detailFragment,bundle)
+           viewModel.setMeal(mealPopular)
+
         }
 
-        /*holder.itemView.setOnClickListener {
-            onItemClick.onItemClick(mealsList[position])
-        }*/
+
+
+
     }
 
-    interface OnItemClick{
-        fun onItemClick(meal: MealPopular)
-    }
+
 }

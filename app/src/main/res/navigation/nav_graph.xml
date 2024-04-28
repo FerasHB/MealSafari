@@ -13,7 +13,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.mealsafari.ui.fragment.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.mealsafari.ui.fragment.FavoriteFragment"
@@ -21,7 +25,12 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.mealsafari.ui.fragment.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment" >
+
+        <argument
+            android:name="detail"
+            app:argType="com.example.mealsafari.ui.Data.MealPopular" />
+    </fragment>
     <fragment
         android:id="@+id/categoryMealsFragment"
         android:name="com.example.mealsafari.ui.fragment.MealsByCategoryFragment"

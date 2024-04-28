@@ -7,7 +7,7 @@ import coil.load
 import com.example.mealsafari.MealViewModel
 import com.example.mealsafari.databinding.MealsByCategoryBinding
 import syntax.com.playground.data.model.meal.Meal
-const val STATUS = "STATUS"
+
 
 class CategoryDetailAdapter(private val mealList: List<Meal>, val viewModel: MealViewModel) :
     RecyclerView.Adapter<CategoryDetailAdapter.MealByCatViewHolder>() {

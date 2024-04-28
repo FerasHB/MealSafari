@@ -9,7 +9,6 @@ import androidx.fragment.app.activityViewModels
 import com.example.mealsafari.MealViewModel
 import com.example.mealsafari.databinding.CategoryDetailFragmentBinding
 import com.example.mealsafari.ui.Adapter.CategoryDetailAdapter
-import com.example.mealsafari.ui.Adapter.STATUS
 
 class CategoryDetailFragment : Fragment() {
     private lateinit var binding: CategoryDetailFragmentBinding
@@ -23,8 +22,8 @@ class CategoryDetailFragment : Fragment() {
     ): View? {
 
         binding = CategoryDetailFragmentBinding.inflate(inflater)
-       // viewModel.loadMealByCategory("beef")
-        viewModel.loadMealByCategory("seafood")
+
+     //   viewModel.loadMealByCategory("seafood")
 
         return binding.root
     }
@@ -32,7 +31,7 @@ class CategoryDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.allMealCategories.observe(viewLifecycleOwner) {
             binding.rvMealsByCat.adapter = CategoryDetailAdapter(it, viewModel)
-            binding.tvCategoryCount.text = viewModel.getMealsByCategory.toString()
+
         }
 
     }

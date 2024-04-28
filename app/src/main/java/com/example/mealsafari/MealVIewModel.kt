@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mealsafari.API.MealApi
 import com.example.mealsafari.repo.MealRepository
 import kotlinx.coroutines.launch
+import syntax.com.playground.data.model.meal.Meal
 
 class MealViewModel:ViewModel() {
 
@@ -20,7 +21,9 @@ class MealViewModel:ViewModel() {
 
 
 
-
+    fun setMeal(meal: Meal){
+        repository.setMeal(meal)
+    }
     fun loadRandomMeal() {
         viewModelScope.launch {
             repository.getRandomMeal()

@@ -1,6 +1,7 @@
 package syntax.com.playground.data.model.meal
 
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 data class Meal(
     val idMeal: String,
@@ -22,4 +23,4 @@ data class Meal(
 
     @Json(name = "strYoutube")
     val video : String=""
-)
+):Serializable

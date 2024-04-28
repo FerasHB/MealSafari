@@ -6,8 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mealsafari.API.MealApi
 import com.example.mealsafari.ui.Data.Category
-import com.example.mealsafari.ui.Data.CategoryList
-import com.example.mealsafari.ui.Data.MealPopular
 import syntax.com.playground.data.model.meal.Meal
 
 class MealRepository(private val apiService: MealApi) {
@@ -16,8 +14,8 @@ class MealRepository(private val apiService: MealApi) {
         get() = _randomMeal
 
 
-    private var _mealPopular = MutableLiveData<List<MealPopular>>()
-    val mealPopular: LiveData<List<MealPopular>>
+    private var _mealPopular = MutableLiveData<List<Meal>>()
+    val mealPopular: LiveData<List<Meal>>
         get() = _mealPopular
 
 
@@ -42,7 +40,7 @@ class MealRepository(private val apiService: MealApi) {
     suspend fun getMealPopular(category: String) {
         try {
             val result = apiService.retrofitService.getPopularItem(category)
-            _mealPopular.postValue(result.mealList)
+            _mealPopular.postValue(result.meals)
         }catch (e:Exception){
             Log.e(TAG, "Error loading Data from API getRandomMeal(): $e")
         }
@@ -65,6 +63,10 @@ class MealRepository(private val apiService: MealApi) {
         } catch(e:Exception) {
             Log.e(TAG, "Error loading Data from API getAllMealCategories(): $e")
         }
+    }
+    fun setMeal(meal: Meal){
+        _randomMeal.value = meal
+
     }
 
 }
