@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.fragment.bottomsheet.MealBottomSheetFragment">
+
+    <ImageView
+        android:id="@+id/image_bottom_sheet"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@color/button"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:id="@+id/linear_meal_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_bottom_sheet"
+        app:layout_constraintTop_toTopOf="@id/image_bottom_sheet"
+        >
+
+    <TextView
+        android:id="@+id/tv_bottom_sheet_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/area_ic"
+        android:drawableTint="@color/black"
+        android:fontFamily="@font/myfont"
+        android:text="Palestine"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_bottom_sheet_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/category_icon"
+        android:drawableTint="@color/black"
+        android:fontFamily="@font/myfont"
+        android:text="Beef"
+        android:textColor="@color/black" />
+</LinearLayout>
+    <TextView
+        android:id="@+id/tv_meal_name_in_btmsheet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/linear_meal_info"
+        app:layout_constraintTop_toBottomOf="@id/linear_meal_info"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="testtest"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/tv_meal_name_in_btmsheet"
+        app:layout_constraintTop_toBottomOf="@id/tv_meal_name_in_btmsheet"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="Read more ..."
+        android:textSize="18sp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

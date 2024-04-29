@@ -29,7 +29,7 @@
 
         <argument
             android:name="detail"
-            app:argType="com.example.mealsafari.ui.Data.MealPopular" />
+            app:argType="syntax.com.playground.data.model.meal.Meal" />
     </fragment>
     <fragment
         android:id="@+id/categoryMealsFragment"
@@ -47,5 +47,8 @@
             android:name="STATUS"
             app:argType="string"
             android:defaultValue='""' />
+        <action
+            android:id="@+id/action_categoryDetailFragment_to_detailFragment3"
+            app:destination="@id/detailFragment" />
     </fragment>
 </navigation>

@@ -37,7 +37,7 @@ class MealsByCategoryAdapter(
         holder.binding.tvMealName.text = categoryMeals.categoryName
 
         holder.binding.root.setOnClickListener {
-            // viewModel.loadMealByCategory(categoryMeals.categoryName)
+            viewModel.loadMealByCategory(categoryMeals.categoryName)
             holder.itemView.findNavController().navigate(R.id.categoryDetailFragment)
         }
     }

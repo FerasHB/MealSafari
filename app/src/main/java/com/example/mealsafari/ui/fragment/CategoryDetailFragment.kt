@@ -23,7 +23,7 @@ class CategoryDetailFragment : Fragment() {
 
         binding = CategoryDetailFragmentBinding.inflate(inflater)
 
-     //   viewModel.loadMealByCategory("seafood")
+        viewModel.loadMealByCategory("")
 
         return binding.root
     }

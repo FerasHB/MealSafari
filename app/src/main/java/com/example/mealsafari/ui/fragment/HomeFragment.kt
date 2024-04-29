@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.mealsafari.MealViewModel
@@ -51,7 +52,7 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.getMealsByCategory.observe(viewLifecycleOwner) {
-            binding.recViewCategories.adapter = CategoryAdapter(it)
+            binding.recViewCategories.adapter = CategoryAdapter(it,viewModel)
         }
 
        binding.recViewCategories.setOnClickListener {

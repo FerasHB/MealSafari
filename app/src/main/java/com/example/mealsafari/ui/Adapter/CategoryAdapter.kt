@@ -12,7 +12,7 @@ import com.example.mealsafari.databinding.PopularItemsBinding
 import com.example.mealsafari.ui.Data.Category
 import syntax.com.playground.data.model.meal.Meal
 
-class CategoryAdapter(val mealCategory: List<Category>) :
+class CategoryAdapter(val mealCategory: List<Category>,val viewModel: MealViewModel) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     inner class CategoryViewHolder(val binding: CategoryItemBinding) :
@@ -36,8 +36,10 @@ class CategoryAdapter(val mealCategory: List<Category>) :
             imgCategory.load(mealCategory.categoryImage)
             tvCategoryName.text = mealCategory.categoryName
         }
-        holder.itemView.setOnClickListener {
-    //    holder.binding.imgCategory.findNavController().navigate(R.id.categoryMealsFragment)
+
+        holder.binding.root.setOnClickListener {
+            viewModel.loadMealByCategory(mealCategory.categoryName)
+            holder.itemView.findNavController().navigate(R.id.categoryDetailFragment)
         }
 
     }
