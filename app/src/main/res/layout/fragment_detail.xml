@@ -133,7 +133,8 @@
 
 
     </androidx.core.widget.NestedScrollView>
-    
+
+
     <ImageView
         android:id="@+id/img_youtube"
         android:layout_width="@dimen/_40sdp"
@@ -150,5 +151,7 @@
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom"
         android:visibility="gone"/>
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

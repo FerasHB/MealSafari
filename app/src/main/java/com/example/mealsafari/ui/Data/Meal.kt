@@ -1,10 +1,15 @@
 package syntax.com.playground.data.model.meal
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.example.mealsafari.ui.Data.MealDetail
 import com.squareup.moshi.Json
 import java.io.Serializable
 
+@Entity(tableName = "meal_information")
 data class Meal(
-    val idMeal: String,
+    @PrimaryKey(autoGenerate = true)
+    val idMeal: Long = 0,
 
     @Json(name = "strMeal")
     val name: String,
@@ -12,15 +17,15 @@ data class Meal(
     @Json(name = "strCategory")
     val category: String = "",
 
-    @Json(name ="strArea")
+    @Json(name = "strArea")
     val area: String = "",
 
     @Json(name = "strMealThumb")
-    val image: String="",
+    val image: String = "",
 
     @Json(name = "strInstructions")
-    val instruction :String="",
+    val instruction: String = "",
 
     @Json(name = "strYoutube")
-    val video : String=""
-):Serializable
+    val video: String = ""
+) : Serializable

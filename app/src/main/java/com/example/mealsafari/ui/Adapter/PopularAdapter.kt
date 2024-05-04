@@ -9,12 +9,14 @@ import coil.load
 import com.example.mealsafari.MealViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.PopularItemsBinding
+import com.example.mealsafari.ui.Data.MealList
 import syntax.com.playground.data.model.meal.Meal
 
 const val DETAIL= "DETAIL"
 
 class PopularAdapter( val meals: List<Meal>, val viewModel : MealViewModel) :
     RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
+        val onItemClick : ((MealList)->Unit)?=null
 
 
 
@@ -34,6 +36,10 @@ class PopularAdapter( val meals: List<Meal>, val viewModel : MealViewModel) :
         val mealPopular = meals[position]
 
 
+        /*holder.itemView.setOnLongClickListener {
+            onItemClick?.invoke(meals[position])
+            true
+        }*/
         holder.binding.imgPopularMeal.load(mealPopular.image)
        holder.binding.root.setOnClickListener {
 
