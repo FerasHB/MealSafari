@@ -1,3 +1,4 @@
+/*
 package com.example.mealsafari.ui.fragment.bottomsheet
 
 import android.content.Intent
@@ -98,4 +99,4 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
         tvMealCategory.text = mealCategory
         tvMealCountry.text = mealCountry
     }
-}
+}*/

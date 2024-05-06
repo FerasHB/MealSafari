@@ -39,7 +39,7 @@ interface ApiService {
     suspend fun getMealsByCategory(@Query("c") category: String): MealList
 
     @GET("lookup.php?")
-    fun getMealById(@Query("i") id: String): MealResponse
+    fun getMealById(@Query("i") id: String): MealList
 
 
 }

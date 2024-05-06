@@ -4,11 +4,9 @@ import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import coil.load
@@ -17,10 +15,12 @@ import com.example.mealsafari.R
 import com.example.mealsafari.databinding.FragmentDetailBinding
 import syntax.com.playground.data.model.meal.Meal
 
-class DetailFragment(val viewModel: MealViewModel) : Fragment() {
+class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
-
-    private val mealToSave: Meal? = null
+    val viewModel: MealViewModel by activityViewModels()
+    private lateinit var  mealToSave: Meal
+    private var mealId = ""
+    private lateinit var dtMeal:Meal
 
     // Diese Methode wird aufgerufen, um die View für dieses Fragment zu erstellen.
     override fun onCreateView(
@@ -37,36 +37,7 @@ class DetailFragment(val viewModel: MealViewModel) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnSave.setOnClickListener {
-            val selectedMeal = viewModel.selectedMeal.value
-            // viewModel.addToFav#orites(selectedMeal)
-        }
-
-        /*viewModel.selectedMeal.observe(viewLifecycleOwner) { meal ->
-            binding.btnSave.setOnClickListener {
-                viewModel.addToFavorites(meal)
-                Toast.makeText(context, "Meal Saved to Favorites", Toast.LENGTH_SHORT).show()
-            }
-        }*/
-
-
-        /*viewModel.selectedMeal.observe(viewLifecycleOwner){meal ->
-            binding.btnSave.setOnClickListener {
-                viewModel.insertMeal(meal)
-                Log.d("DataBase", "$meal")
-                Toast.makeText(requireContext(), "Meal Saved", Toast.LENGTH_SHORT).show()
-
-            }
-
-        }*/
-
-
-        /*binding.btnSave.setOnClickListener {
-        mealToSave?.let {
-            viewModel.insertMeal(it)
-            Toast.makeText(context, "Meal Saved", Toast.LENGTH_SHORT).show()
-        }
-        }*/
+        setFloatingButtonStatues()
 
 
         // Beobachten Sie das LiveData-Objekt randomMeal aus dem ViewModel
@@ -75,7 +46,7 @@ class DetailFragment(val viewModel: MealViewModel) : Fragment() {
             binding.imgMealDetail.load(mealObj.image)
 
             // Setzen der Texte für die verschiedenen TextViews
-            binding.tvCategoryArea.text = mealObj.area
+           binding.tvCategoryArea.text = mealObj.area
             binding.tvCategoryInfo.text = mealObj.category
             binding.tvInstructions.text = mealObj.instruction
 
@@ -94,6 +65,30 @@ class DetailFragment(val viewModel: MealViewModel) : Fragment() {
                 // Starten des Intents
                 startActivity(intent)
             }
+        }
+    }
+
+    private fun saveMeal() {
+        val meal = Meal(dtMeal.idMeal,
+            dtMeal.name,
+            dtMeal.area,
+            dtMeal.category,
+            dtMeal.instruction,
+            dtMeal.image,
+            dtMeal.video)
+
+        viewModel.insertMeal(meal)
+    }
+
+    fun isMealSavedInDatabase(): Boolean {
+        return viewModel.isMealSavedInDatabase(mealId)
+    }
+
+    fun setFloatingButtonStatues() {
+        if(isMealSavedInDatabase()){
+            binding.btnSave.setImageResource(R.drawable.ic_baseline_save_24)
+        }else{
+            binding.btnSave.setImageResource(R.drawable.ic_baseline_save_24)
         }
     }
 }

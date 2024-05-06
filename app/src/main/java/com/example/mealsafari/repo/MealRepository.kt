@@ -1,11 +1,11 @@
 package com.example.mealsafari.repo
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mealsafari.API.MealApi
+import com.example.mealsafari.room.MealDao
 import com.example.mealsafari.room.MealDatabase
 import com.example.mealsafari.ui.Data.Category
 import com.example.mealsafari.ui.Data.MealDetail
@@ -52,9 +52,9 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         get() = _selectedMeal
 
 
-    fun selectedMeal(meal: Meal) {
-        _selectedMeal.value = meal
-    }
+
+
+
 
 
     suspend fun upsertMeal(meal: Meal) {
@@ -69,16 +69,16 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     suspend fun getRandomMeal() {
         try {
             val result = apiService.retrofitService.getRandomMeal()
-            _randomMeal.postValue(result.meals.first())
+            _randomMeal.postValue(result.meals.random())
         } catch (e: Exception) {
             Log.e(TAG, "Error loading Data from API getRandomMeal(): $e")
         }
     }
 
 
-    suspend fun getMealPopular(category: String) {
+    suspend fun getMealPopular(popularMeal: String) {
         try {
-            val result = apiService.retrofitService.getPopularItem(category)
+            val result = apiService.retrofitService.getPopularItem(popularMeal)
             _mealPopular.postValue(result.meals)
         } catch (e: Exception) {
             Log.e(TAG, "Error loading Data from API getPopularMeal(): $e")
@@ -105,16 +105,22 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     }
 
     fun setMeal(meal: Meal) {
+
         _randomMeal.value = meal
     }
 
-    fun getMealById(id: String) {
+    suspend fun getMealById(mealId: String): Meal {
+        return dataBase.mealDao.getMealById(mealId)
+    }
+
+
+    /*fun getMealById(id: String) {
         try {
             val result = apiService.retrofitService.getMealById(id)
-            _mealDetail.postValue(result.meals)
+            _randomMeal.postValue(result.meals[0])
         } catch (e: Exception) {
             Log.e(TAG, "Error loading Data from API getAllMealCategories(): $e")
         }
-    }
+    }*/
 
 }

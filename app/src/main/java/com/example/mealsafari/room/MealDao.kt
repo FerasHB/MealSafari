@@ -18,8 +18,10 @@ interface MealDao {
     suspend fun deleteMeal(meal: Meal)
 
     @Query("SELECT * FROM meal_information ORDER BY idMeal")
-     fun getAllMeals(): LiveData<List<Meal>>
+    fun getAllMeals(): LiveData<List<Meal>>
 
+    @Query("SELECT * FROM meal_information WHERE idMeal =:id")
+    fun getMealById(id: String): Meal
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItems(itemDatas: List<Meal>)

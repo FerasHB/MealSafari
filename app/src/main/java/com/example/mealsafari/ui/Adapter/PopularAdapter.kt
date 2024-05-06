@@ -1,6 +1,8 @@
 package com.example.mealsafari.ui.Adapter
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -12,12 +14,11 @@ import com.example.mealsafari.databinding.PopularItemsBinding
 import com.example.mealsafari.ui.Data.MealList
 import syntax.com.playground.data.model.meal.Meal
 
-const val DETAIL= "DETAIL"
+const val DETAIL = "DETAIL"
 
-class PopularAdapter( val meals: List<Meal>, val viewModel : MealViewModel) :
+class PopularAdapter(val meals: List<Meal>, val viewModel: MealViewModel) :
     RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
-        val onItemClick : ((MealList)->Unit)?=null
-
+    val onItemClick: ((MealList) -> Unit)? = null
 
 
     inner class PopularViewHolder(val binding: PopularItemsBinding) :
@@ -36,23 +37,33 @@ class PopularAdapter( val meals: List<Meal>, val viewModel : MealViewModel) :
         val mealPopular = meals[position]
 
 
+
+        // Laden des Bildes in das ImageView im ViewHolder
+        holder.binding.imgPopularMeal.load(mealPopular.image)
         /*holder.itemView.setOnLongClickListener {
             onItemClick?.invoke(meals[position])
             true
         }*/
+
         holder.binding.imgPopularMeal.load(mealPopular.image)
-       holder.binding.root.setOnClickListener {
 
 
 
-           val bundle = Bundle()
-           bundle.putSerializable("detail",mealPopular)
-           holder.binding.imgPopularMeal.findNavController().navigate(R.id.action_homeFragment_to_detailFragment,bundle)
-           viewModel.setMeal(mealPopular)
+        holder.binding.root.setOnClickListener {
+
+
+            val bundle = Bundle()
+            bundle.putSerializable("detail", mealPopular)
+
+
+            holder.binding.imgPopularMeal.findNavController()
+                .navigate(R.id.action_homeFragment_to_detailFragment, bundle)
+            Log.e(TAG, "Error loading Data from API Popular: ")
+
+            viewModel.setMeal(mealPopular)
+
 
         }
-
-
 
 
     }

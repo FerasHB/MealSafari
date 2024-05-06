@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.mealsafari.MealViewModel
@@ -15,7 +14,6 @@ import com.example.mealsafari.R
 import com.example.mealsafari.databinding.HomeFragmentBinding
 import com.example.mealsafari.ui.Adapter.CategoryAdapter
 import com.example.mealsafari.ui.Adapter.PopularAdapter
-import com.example.mealsafari.ui.Data.MealDetail
 import syntax.com.playground.data.model.meal.Meal
 
 class HomeFragment : Fragment() {
@@ -47,8 +45,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadRandomMeal()
-        viewModel.loadPopularMeal("Side")
         viewModel.loadAllMealCategories()
+        viewModel.loadPopularMeal("Pasta")
+
         viewModel.randomMeal.observe(viewLifecycleOwner) { mealObj: Meal ->
             binding.imgRandomMeal.load(mealObj.image)
         }
@@ -56,11 +55,12 @@ class HomeFragment : Fragment() {
         binding.randomMealCard.setOnClickListener {
             findNavController().navigate(R.id.detailFragment)
         }
-        viewModel.PopularMeal.observe(viewLifecycleOwner) { popularMeals ->
+        viewModel.popularMeal.observe(viewLifecycleOwner) { popularMeals ->
             binding.recViewMealPopular.adapter = PopularAdapter(popularMeals, viewModel)
         }
 
         viewModel.getMealsByCategory.observe(viewLifecycleOwner) {
+
             binding.recViewCategories.adapter = CategoryAdapter(it, viewModel)
         }
 

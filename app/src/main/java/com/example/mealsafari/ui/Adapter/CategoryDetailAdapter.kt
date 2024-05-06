@@ -30,7 +30,8 @@ class CategoryDetailAdapter(private val mealList: List<Meal>, val viewModel: Mea
 
     override fun onBindViewHolder(holder: MealByCatViewHolder, position: Int) {
         val meal = mealList[position]
-        holder.binding.tvCategoryBttmsheet.text = meal.category
+
+
         holder.binding.imgCategory.load(meal.image)
         holder.binding.tvCategoryBtmsheetName.text = meal.name
 

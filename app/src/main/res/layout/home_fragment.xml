@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet_dialog_shape"
     tools:context=".ui.fragment.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -144,10 +145,9 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rec_view_categories"
                         android:layout_width="match_parent"
-                        android:layout_height="160dp"
+                        android:layout_height="146dp"
                         android:orientation="vertical"
-                        android:scrollbars="none"
-
+                        android:scrollbars="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="3" />
 

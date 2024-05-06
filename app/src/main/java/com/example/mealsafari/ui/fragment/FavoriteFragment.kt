@@ -32,13 +32,11 @@ class FavoriteFragment:Fragment() {
 
 
         viewModel.favoriteMeals.observe(viewLifecycleOwner) { favoriteMeals ->
-            // Aktualisiere die UI mit der Liste der Favoriten
-            viewModel.addToFavorites(favoriteMeals.first())
+
+
            binding.favRecView.adapter = FavoriteAdapter(favoriteMeals,viewModel)
-           /* favoriteMeals.forEach {
-            viewModel.loadRandomMeal()
-                Log.d("test",it.idMeal.toString())
-            }*/
+
+
 
 
         }
