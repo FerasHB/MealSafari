@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.mealsafari.API.ApiService
 import com.example.mealsafari.API.MealApi
 import com.example.mealsafari.repo.MealRepository
 import com.example.mealsafari.room.getDatabase
@@ -23,7 +24,7 @@ import syntax.com.playground.data.model.meal.Meal
 class MealViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = MealRepository(MealApi, getDatabase(application))
-
+    private val mutableMealDetail = MutableLiveData<List<MealDetail>>()
     val randomMeal = repository.randomMeal
 
     val popularMeal = repository.mealPopular
@@ -135,5 +136,16 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
+    fun deleteMealById(mealId:String){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteMealById(mealId)
+        }
+    }
+
+    fun getMEalByIDFromApi(id:String){
+        viewModelScope.launch {
+            repository.getMealByIdFromApi(id)
+        }
+    }
 
 }

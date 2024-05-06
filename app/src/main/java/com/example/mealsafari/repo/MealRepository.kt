@@ -113,14 +113,18 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         return dataBase.mealDao.getMealById(mealId)
     }
 
+    suspend fun deleteMealById(mealId: String) {
+        dataBase.mealDao.deleteMealById(mealId)
+    }
 
-    /*fun getMealById(id: String) {
+
+    fun getMealByIdFromApi(id: String) {
         try {
             val result = apiService.retrofitService.getMealById(id)
             _randomMeal.postValue(result.meals[0])
         } catch (e: Exception) {
             Log.e(TAG, "Error loading Data from API getAllMealCategories(): $e")
         }
-    }*/
+    }
 
 }

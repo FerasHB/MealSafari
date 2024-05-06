@@ -7,12 +7,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import coil.load
 import com.example.mealsafari.MealViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.FragmentDetailBinding
+import com.google.android.material.snackbar.Snackbar
 import syntax.com.playground.data.model.meal.Meal
 
 class DetailFragment : Fragment() {
@@ -39,6 +42,19 @@ class DetailFragment : Fragment() {
 
         setFloatingButtonStatues()
 
+        viewModel.getMEalByIDFromApi(mealId)
+
+        binding.btnSave.setOnClickListener {
+            if(isMealSavedInDatabase()){
+                deleteMeal()
+                binding.btnSave.setImageResource(R.drawable.ic_baseline_save_24)
+
+            }else{
+                saveMeal()
+                binding.btnSave.setImageResource(R.drawable.ic_saved)
+
+            }
+        }
 
         // Beobachten Sie das LiveData-Objekt randomMeal aus dem ViewModel
         viewModel.randomMeal.observe(viewLifecycleOwner) { mealObj: Meal ->
@@ -90,5 +106,10 @@ class DetailFragment : Fragment() {
         }else{
             binding.btnSave.setImageResource(R.drawable.ic_baseline_save_24)
         }
+    }
+
+
+    private fun deleteMeal() {
+        viewModel.deleteMealById(mealId)
     }
 }

@@ -32,7 +32,7 @@ fun getDatabase(context: Context): MealDatabase {
             ).build()
         }
 
-    return INSTANCE
+        return INSTANCE
     }
     //In jedem Fall liefer die Instanz der Datenbank zurück
 

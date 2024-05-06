@@ -23,6 +23,9 @@ interface MealDao {
     @Query("SELECT * FROM meal_information WHERE idMeal =:id")
     fun getMealById(id: String): Meal
 
+    @Query("DELETE FROM meal_information WHERE idMeal =:id")
+    fun deleteMealById(id:String)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItems(itemDatas: List<Meal>)
 }
