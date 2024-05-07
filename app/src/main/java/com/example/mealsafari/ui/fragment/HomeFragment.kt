@@ -48,9 +48,14 @@ class HomeFragment : Fragment() {
         viewModel.loadAllMealCategories()
         viewModel.loadPopularMeal("Pasta")
 
+
+
         viewModel.randomMeal.observe(viewLifecycleOwner) { mealObj: Meal ->
             binding.imgRandomMeal.load(mealObj.image)
         }
+         binding.ivSearch.setOnClickListener{
+             findNavController().navigate(R.id.searchFragment)
+    }
 
         binding.randomMealCard.setOnClickListener {
             findNavController().navigate(R.id.detailFragment)

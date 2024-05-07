@@ -37,16 +37,8 @@ class PopularAdapter(val meals: List<Meal>, val viewModel: MealViewModel) :
         val mealPopular = meals[position]
 
 
-
         // Laden des Bildes in das ImageView im ViewHolder
         holder.binding.imgPopularMeal.load(mealPopular.image)
-        /*holder.itemView.setOnLongClickListener {
-            onItemClick?.invoke(meals[position])
-            true
-        }*/
-
-        holder.binding.imgPopularMeal.load(mealPopular.image)
-
 
 
         holder.binding.root.setOnClickListener {
@@ -54,8 +46,6 @@ class PopularAdapter(val meals: List<Meal>, val viewModel: MealViewModel) :
 
             val bundle = Bundle()
             bundle.putSerializable("detail", mealPopular)
-
-
             holder.binding.imgPopularMeal.findNavController()
                 .navigate(R.id.action_homeFragment_to_detailFragment, bundle)
             Log.e(TAG, "Error loading Data from API Popular: ")

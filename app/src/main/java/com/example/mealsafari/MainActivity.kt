@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.welcomeFragment -> binding.bottomNavigationView.visibility = View.GONE
                 R.id.detailFragment -> binding.bottomNavigationView.visibility = View.GONE
+                R.id.searchFragment -> binding.bottomNavigationView.visibility = View.GONE
+                R.id.categoryDetailFragment -> binding.bottomNavigationView.visibility = View.GONE
 
                 else -> binding.bottomNavigationView.visibility = View.VISIBLE
             }

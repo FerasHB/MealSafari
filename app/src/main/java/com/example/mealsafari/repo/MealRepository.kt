@@ -5,10 +5,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mealsafari.API.MealApi
-import com.example.mealsafari.room.MealDao
 import com.example.mealsafari.room.MealDatabase
 import com.example.mealsafari.ui.Data.Category
 import com.example.mealsafari.ui.Data.MealDetail
+import com.example.mealsafari.ui.Data.Search
+import com.example.mealsafari.ui.Data.SearchResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import syntax.com.playground.data.model.meal.Meal
@@ -16,13 +17,23 @@ import syntax.com.playground.data.model.meal.Meal
 class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase) {
     val getAllMeals: LiveData<List<Meal>> = dataBase.mealDao.getAllMeals()
 
-   suspend fun getAllMeals(){
-        withContext(Dispatchers.IO){
+    val allFavoriteMeals: LiveData<List<Meal>> = dataBase.mealDao.getAllFavoriteMeals()
+
+    suspend fun insert(favoriteMeal: Meal) {
+        dataBase.mealDao.insertFavoriteMeal(favoriteMeal)
+    }
+
+    suspend fun delete(favoriteMeal: Meal) {
+        dataBase.mealDao.deleteMeal(favoriteMeal)
+    }
+
+    suspend fun getAllMeals() {
+        withContext(Dispatchers.IO) {
             val newMealsList = apiService.retrofitService.getRandomMeal().meals
             dataBase.mealDao.getAllMeals()
         }
     }
-    
+
 
     private var _randomMeal = MutableLiveData<Meal>()
     val randomMeal: LiveData<Meal>
@@ -52,8 +63,20 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         get() = _selectedMeal
 
 
+    private var _results = MutableLiveData<List<Meal>>()
+
+    val results: LiveData<List<Meal>>
+        get() = _results
 
 
+    suspend fun getResults(term: String) {
+        try {
+            val resultList = apiService.retrofitService.getBySearch(term)
+            _results.value = resultList.meals
+        } catch (e: java.lang.Exception) {
+            Log.e(TAG, "Error loading Data from API: $e")
+        }
+    }
 
 
 

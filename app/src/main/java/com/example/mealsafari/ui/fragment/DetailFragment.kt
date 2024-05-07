@@ -44,17 +44,6 @@ class DetailFragment : Fragment() {
 
         viewModel.getMEalByIDFromApi(mealId)
 
-        binding.btnSave.setOnClickListener {
-            if(isMealSavedInDatabase()){
-                deleteMeal()
-                binding.btnSave.setImageResource(R.drawable.ic_baseline_save_24)
-
-            }else{
-                saveMeal()
-                binding.btnSave.setImageResource(R.drawable.ic_saved)
-
-            }
-        }
 
         // Beobachten Sie das LiveData-Objekt randomMeal aus dem ViewModel
         viewModel.randomMeal.observe(viewLifecycleOwner) { mealObj: Meal ->
@@ -84,17 +73,7 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun saveMeal() {
-        val meal = Meal(dtMeal.idMeal,
-            dtMeal.name,
-            dtMeal.area,
-            dtMeal.category,
-            dtMeal.instruction,
-            dtMeal.image,
-            dtMeal.video)
 
-        viewModel.insertMeal(meal)
-    }
 
     fun isMealSavedInDatabase(): Boolean {
         return viewModel.isMealSavedInDatabase(mealId)

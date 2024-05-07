@@ -3,6 +3,7 @@ package com.example.mealsafari.API
 import com.example.mealsafari.ui.Data.CategoryList
 import com.example.mealsafari.ui.Data.MealList
 import com.example.mealsafari.ui.Data.MealResponse
+import com.example.mealsafari.ui.Data.SearchResult
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
@@ -40,6 +41,9 @@ interface ApiService {
 
     @GET("lookup.php?")
     fun getMealById(@Query("i") id: String): MealList
+
+    @GET("search.php?")
+    suspend fun getBySearch(@Query("s") searchQuery: String): MealList
 
 
 }

@@ -26,6 +26,10 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = MealRepository(MealApi, getDatabase(application))
     private val mutableMealDetail = MutableLiveData<List<MealDetail>>()
     val randomMeal = repository.randomMeal
+    private lateinit var allMeals: LiveData<List<Meal>>
+
+    val favoriteMeals1: LiveData<List<Meal>> = repository.allFavoriteMeals
+
 
     val popularMeal = repository.mealPopular
 
@@ -43,48 +47,71 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
     val favoriteMeals: LiveData<List<Meal>>
         get() = _favoriteMeals
 
-    private val _selectedMeal1 = MutableLiveData<Meal>()
-    val selectedMeal1: LiveData<Meal>
-        get() = _selectedMeal1
 
+    private val _inputText = MutableLiveData<String>()
+    val inputText: LiveData<String>
+        get() = _inputText
 
-  /*  fun setSelectedMeal(meal: Meal) {
-        _selectedMeal1.value = meal
+    val results = repository.results
+
+    fun updateInputText(text: String) {
+        _inputText.value = text
     }
 
-    fun addToFavorites() {
-        val mealToAdd = _selectedMeal1.value
-        if (mealToAdd != null) {
-            // Füge mealToAdd zu den Favoriten hinzu
+    /*  fun setSelectedMeal(meal: Meal) {
+          _selectedMeal1.value = meal
+      }
+
+      fun addToFavorites() {
+          val mealToAdd = _selectedMeal1.value
+          if (mealToAdd != null) {
+              // Füge mealToAdd zu den Favoriten hinzu
+          }
+      }*/
+    fun addFavorite(meal: Meal) {
+        val favoriteMeal = Meal(
+            idMeal = meal.idMeal,
+            name = meal.name,
+            image = meal.image,
+
+            )
+        viewModelScope.launch {
+            repository.insert(favoriteMeal)
         }
-    }*/
+    }
+
+    fun removeFavorite(favoriteMeal: Meal) {
+        viewModelScope.launch {
+            repository.delete(favoriteMeal)
+        }
+    }
 
 
-
-    fun getAllMeals(){
+    fun getAllMeals() {
         viewModelScope.launch {
             repository.getAllMeals()
         }
     }
 
 
-    fun insertMeal(meal: Meal){
+    fun insertMeal(meal: Meal) {
         viewModelScope.launch {
             repository.upsertMeal(meal)
         }
     }
-    fun deleteMeal(meal: Meal){
+
+    fun deleteMeal(meal: Meal) {
         viewModelScope.launch {
             repository.deleteMeal(meal)
         }
     }
 
 
-   /* fun getMealById(id: String) {
-        viewModelScope.launch {
-            repository.getMealById(id)
-        }
-    }*/
+    /* fun getMealById(id: String) {
+         viewModelScope.launch {
+             repository.getMealById(id)
+         }
+     }*/
 
     fun observeMealBottomSheet(): MutableLiveData<List<Meal>> {
         return mutableMealBottomSheet
@@ -95,11 +122,7 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
         repository.setMeal(meal)
     }
 
-    /*fun getMealById(id:String){
-        viewModelScope.launch {
-            repository.getMealById(id)
-        }
-    }*/
+
     fun loadRandomMeal() {
         viewModelScope.launch {
             repository.getRandomMeal()
@@ -130,22 +153,33 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
         runBlocking(Dispatchers.IO) {
             meal = repository.getMealById(mealId)
         }
-        if (meal == null)
-            return false
+        if (meal == null) return false
         return true
 
     }
 
-    fun deleteMealById(mealId:String){
+    fun deleteMealById(mealId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteMealById(mealId)
         }
     }
 
-    fun getMEalByIDFromApi(id:String){
+    fun getMEalByIDFromApi(id: String) {
         viewModelScope.launch {
             repository.getMealByIdFromApi(id)
         }
     }
+
+    fun observeSaveMeal(): LiveData<List<Meal>> {
+        return allMeals
+    }
+
+
+    fun loadData(term: String) {
+        viewModelScope.launch {
+            repository.getResults(term)
+        }
+    }
+
 
 }
