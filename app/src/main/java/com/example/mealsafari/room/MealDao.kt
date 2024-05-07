@@ -14,24 +14,17 @@ interface MealDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertMeal(meal: Meal)
 
-
-    @Query("SELECT * FROM meal_information")
-    fun getAllFavoriteMeals(): LiveData<List<Meal>>
-
     @Delete
     suspend fun deleteMeal(meal: Meal)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFavoriteMeal(favoriteMeal: Meal)
-
     @Query("SELECT * FROM meal_information ORDER BY idMeal")
-    suspend fun getAllMeals(): LiveData<List<Meal>>
+    fun getAllMeals(): LiveData<List<Meal>>
 
     @Query("SELECT * FROM meal_information WHERE idMeal =:id")
-    suspend fun getMealById(id: String): Meal
+    fun getMealById(id: String): Meal
 
     @Query("DELETE FROM meal_information WHERE idMeal =:id")
-    suspend fun deleteMealById(id: String)
+    fun deleteMealById(id:String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItems(itemDatas: List<Meal>)

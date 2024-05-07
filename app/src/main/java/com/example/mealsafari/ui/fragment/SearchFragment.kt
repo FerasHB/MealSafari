@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.mealsafari.MealViewModel
 import com.example.mealsafari.databinding.SearchFragmentBinding
@@ -37,12 +38,26 @@ class SearchFragment : Fragment() {
             )
         )
 
-        binding.rvResults.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            )
-        )
+
+        binding.ivArrowSearch.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        viewModel.results.observe(
+            viewLifecycleOwner
+        ) { results ->
+            if (results.isEmpty()) {
+                // Keine Ergebnisse gefunden, RecyclerView ausblenden
+                binding.rvResults.visibility = View.GONE
+            } else {
+                // Ergebnisse gefunden, RecyclerView anzeigen
+                binding.rvResults.visibility = View.VISIBLE
+
+                // Alphabetisch sortierte Ergebnisse anzeigen
+                val sortedResults = results.sortedBy { it.name }
+                binding.rvResults.adapter = SearchAdapter(sortedResults, viewModel)
+            }
+        }
 
 
         viewModel.inputText.observe(
@@ -64,6 +79,7 @@ class SearchFragment : Fragment() {
                 viewModel.updateInputText(p0.toString())
             }
         })
+
 
 
     }

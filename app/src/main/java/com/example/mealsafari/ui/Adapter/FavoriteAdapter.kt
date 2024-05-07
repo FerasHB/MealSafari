@@ -42,18 +42,7 @@ class FavoriteAdapter(val meals: List<Meal>, val viewModel: MealViewModel) :
         }
     }
 
-    fun getMelaByPosition(position: Int): Meal {
-        return favoriteMeals[position]
-    }
 
-    fun setOnFavoriteMealClickListener(onFavoriteClickListener: OnFavoriteClickListener) {
-        this.onFavoriteClickListener = onFavoriteClickListener
-    }
-
-    fun setFavoriteMealsList(favoriteMeals: List<Meal>) {
-        this.favoriteMeals = favoriteMeals
-        notifyDataSetChanged()
-    }
 
     interface OnFavoriteClickListener {
         fun onFavoriteClick(meal: Meal)

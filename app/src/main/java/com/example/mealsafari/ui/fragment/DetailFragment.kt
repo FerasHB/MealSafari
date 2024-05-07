@@ -40,7 +40,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setFloatingButtonStatues()
+        //setFloatingButtonStatues()
 
         viewModel.getMEalByIDFromApi(mealId)
 
@@ -75,17 +75,17 @@ class DetailFragment : Fragment() {
 
 
 
-    fun isMealSavedInDatabase(): Boolean {
+  /*  fun isMealSavedInDatabase(): Boolean {
         return viewModel.isMealSavedInDatabase(mealId)
-    }
+    }*/
 
-    fun setFloatingButtonStatues() {
+    /*fun setFloatingButtonStatues() {
         if(isMealSavedInDatabase()){
             binding.btnSave.setImageResource(R.drawable.ic_baseline_save_24)
         }else{
             binding.btnSave.setImageResource(R.drawable.ic_baseline_save_24)
         }
-    }
+    }*/
 
 
     private fun deleteMeal() {

@@ -15,13 +15,8 @@ import kotlinx.coroutines.withContext
 import syntax.com.playground.data.model.meal.Meal
 
 class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase) {
-    val getAllMeals: LiveData<List<Meal>> = dataBase.mealDao.getAllMeals()
 
-    val allFavoriteMeals: LiveData<List<Meal>> = dataBase.mealDao.getAllFavoriteMeals()
 
-    suspend fun insert(favoriteMeal: Meal) {
-        dataBase.mealDao.insertFavoriteMeal(favoriteMeal)
-    }
 
     suspend fun delete(favoriteMeal: Meal) {
         dataBase.mealDao.deleteMeal(favoriteMeal)
@@ -56,11 +51,6 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     private var _mealDetail = MutableLiveData<List<MealDetail>>()
     val mealDetail: LiveData<List<MealDetail>>
         get() = _mealDetail
-
-    private var _selectedMeal = MutableLiveData<Meal>()
-
-    val selectedMeal: LiveData<Meal>
-        get() = _selectedMeal
 
 
     private var _results = MutableLiveData<List<Meal>>()
