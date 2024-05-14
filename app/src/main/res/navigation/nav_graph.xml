@@ -62,4 +62,33 @@
             android:id="@+id/action_searchFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/shoppingFragment"
+        android:name="com.example.mealsafari.ui.fragment.soppingList.ShoppingFragment"
+        android:label="ShoppingFragment" >
+        <action
+            android:id="@+id/action_shoppingFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_shoppingFragment_to_editeFragment"
+            app:destination="@id/editeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.mealsafari.ui.fragment.soppingList.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_edite" >
+        <action
+            android:id="@+id/action_addFragment_to_shoppingFragment"
+            app:destination="@id/shoppingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editeFragment"
+        android:name="com.example.mealsafari.ui.fragment.soppingList.EditeFragment"
+        android:label="fragment_edite"
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_editeFragment_to_shoppingFragment"
+            app:destination="@id/shoppingFragment" />
+    </fragment>
 </navigation>

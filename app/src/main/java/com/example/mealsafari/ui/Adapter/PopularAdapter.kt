@@ -39,6 +39,7 @@ class PopularAdapter(val meals: List<Meal>, val viewModel: MealViewModel) :
 
         // Laden des Bildes in das ImageView im ViewHolder
         holder.binding.imgPopularMeal.load(mealPopular.image)
+        holder.binding.popularName.text = mealPopular.name
 
 
         holder.binding.root.setOnClickListener {
