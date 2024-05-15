@@ -1,10 +1,12 @@
 package com.example.mealsafari.ui.fragment.soppingList
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI.navigateUp
@@ -38,8 +40,7 @@ class EditeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         noteId = requireArguments().getLong("noteId")
 
-        val note = viewModel.getAllNotes.value?.find { it.id == noteId }?:return
-
+        val note = viewModel.getAllNotes.value?.find { it.id == noteId } ?: return
         binding.addNoteTitle.setText(note.noteTitle)
         binding.addNoteDesc.setText(note.noteDesc)
 
@@ -48,15 +49,32 @@ class EditeFragment : Fragment() {
             note.noteDesc = binding.addNoteDesc.text.toString()
 
 
-                viewModel.updateNote(note)
             findNavController().navigate(R.id.action_editeFragment_to_shoppingFragment)
+            Toast.makeText(requireContext(), "Done", Toast.LENGTH_SHORT).show()
+
+            viewModel.updateNote(note)
+
 
         }
 
         binding.ivDelete.setOnClickListener {
-            viewModel.deleteNote(noteId)
-            findNavController().navigate(EditeFragmentDirections.actionEditeFragmentToShoppingFragment())        }
-
+            val alertDialogBuilder = AlertDialog.Builder(requireContext())
+            alertDialogBuilder.apply {
+                setTitle("Confirm Deletion")
+                setMessage("Are you sure you want to delete this note?")
+                setPositiveButton("Ja") { _, _ ->
+                    // Wenn der Benutzer "Ja" auswählt, lösche das Element
+                    viewModel.deleteNote(noteId)
+                    Toast.makeText(requireContext(), "Note deleted", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(EditeFragmentDirections.actionEditeFragmentToShoppingFragment())
+                }
+                setNegativeButton("Cancel") { dialog, _ ->
+                    // Wenn der Benutzer "Abbrechen" auswählt, schließe den Dialog, ohne etwas zu tun
+                    dialog.dismiss()
+                }
+                create().show()
+            }
+        }
 
     }
 }

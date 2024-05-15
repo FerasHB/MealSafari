@@ -30,7 +30,23 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
 
     val getMealsByCategory = repository.mealBYCategories
 
+
+    private val _favoriteMeals = MutableLiveData<List<Meal>>()
+    val favoriteMeals: LiveData<List<Meal>>
+        get() = _favoriteMeals
+
+
+    private val _inputText = MutableLiveData<String>()
+    val inputText: LiveData<String>
+        get() = _inputText
+
+    val results = repository.results
+
     val setNote =repository.setNote
+
+    val getAllNotes = repository.getAllNotes
+
+
     fun saveNote(note: Note) {
         viewModelScope.launch {
             repository.saveNote(note)
@@ -51,10 +67,11 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
     fun updateNote(note: Note) {
          viewModelScope.launch {
             repository.updateNote(note)
+
         }
     }
 
-    val getAllNotes = repository.getAllNotes
+
     fun searchNotes(query: String?) {
         repository.searchNotes(query)
     }
@@ -75,16 +92,6 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    private val _favoriteMeals = MutableLiveData<List<Meal>>()
-    val favoriteMeals: LiveData<List<Meal>>
-        get() = _favoriteMeals
-
-
-    private val _inputText = MutableLiveData<String>()
-    val inputText: LiveData<String>
-        get() = _inputText
-
-    val results = repository.results
 
 
     fun loadData(term: String) {

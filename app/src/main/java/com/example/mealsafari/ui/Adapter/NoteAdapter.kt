@@ -28,13 +28,14 @@ class NoteAdapter(val note: List<Note>, val viewModel: MealViewModel) :
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val currentNote = note[position]
+
         val noteId: Long =currentNote.id
         holder.binding.noteTitle.text = currentNote.noteTitle
         holder.binding.noteDesc.text = currentNote.noteDesc
 
         holder.binding.cvNote.setOnClickListener {
             holder.itemView.findNavController()
-                .navigate(ShoppingFragmentDirections.actionShoppingFragmentToEditeFragment())
+                .navigate(ShoppingFragmentDirections.actionShoppingFragmentToEditeFragment().setNoteId(noteId))
         }
 
        /* holder.binding.cvNote.setOnClickListener {

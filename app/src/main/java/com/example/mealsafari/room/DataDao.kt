@@ -41,6 +41,7 @@ interface DataDao {
     @Update
     suspend fun updateNote(note: Note)
 
+
     @Query("DELETE FROM notes WHERE id = :id")
     suspend fun deleteNote(id: Long)
 

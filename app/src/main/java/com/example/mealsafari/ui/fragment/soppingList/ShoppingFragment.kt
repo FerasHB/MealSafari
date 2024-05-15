@@ -34,6 +34,7 @@ class ShoppingFragment : Fragment() {
             binding.homeRecyclerView.adapter = NoteAdapter(it,viewModel)
         }
 
+
         binding.addNoteFab.setOnClickListener {
             findNavController().navigate(
                 ShoppingFragmentDirections.actionShoppingFragmentToAddFragment()

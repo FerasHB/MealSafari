@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -46,7 +47,10 @@ class AddFragment : Fragment() {
                     noteTitle = addNoteTitle.text.toString()
 
                 )
+                Toast.makeText(requireContext(), "Note Saved", Toast.LENGTH_SHORT).show()
+
                 viewModel.saveNote(note)
+
             }
             findNavController().navigate(AddFragmentDirections.actionAddFragmentToShoppingFragment())
         }

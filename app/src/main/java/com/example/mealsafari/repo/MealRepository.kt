@@ -53,6 +53,7 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     suspend fun updateNote(note: Note) {
         try {
             dataBase.dataDao.updateNote(note)
+
         }catch (e: Exception){
             Log.d("Repository", "Error in Database: $e")
 
