@@ -21,9 +21,9 @@ import syntax.com.playground.data.model.meal.Meal
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     val viewModel: MealViewModel by activityViewModels()
-    private lateinit var  mealToSave: Meal
+
     private var mealId = ""
-    private lateinit var dtMeal:Meal
+
 
     // Diese Methode wird aufgerufen, um die View für dieses Fragment zu erstellen.
     override fun onCreateView(
@@ -75,20 +75,4 @@ class DetailFragment : Fragment() {
 
 
 
-  /*  fun isMealSavedInDatabase(): Boolean {
-        return viewModel.isMealSavedInDatabase(mealId)
-    }*/
-
-    /*fun setFloatingButtonStatues() {
-        if(isMealSavedInDatabase()){
-            binding.btnSave.setImageResource(R.drawable.ic_baseline_save_24)
-        }else{
-            binding.btnSave.setImageResource(R.drawable.ic_baseline_save_24)
-        }
-    }*/
-
-
-    private fun deleteMeal() {
-        viewModel.deleteMealById(mealId)
-    }
 }

@@ -2,7 +2,6 @@ package syntax.com.playground.data.model.meal
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.mealsafari.ui.Data.MealDetail
 import com.squareup.moshi.Json
 import java.io.Serializable
 

@@ -1,30 +1,27 @@
 package com.example.mealsafari
 
 import android.app.Application
-import android.content.ContentValues.TAG
-import android.util.Log
+
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
-import com.example.mealsafari.API.ApiService
+
+
 import com.example.mealsafari.API.MealApi
 import com.example.mealsafari.repo.MealRepository
 import com.example.mealsafari.room.getDatabase
-import com.example.mealsafari.ui.Data.MealDetail
-import com.example.mealsafari.ui.Data.MealList
+import com.example.mealsafari.ui.Data.Note
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import syntax.com.playground.data.model.meal.Meal
 
 class MealViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = MealRepository(MealApi, getDatabase(application))
-    private val mutableMealDetail = MutableLiveData<List<MealDetail>>()
+
     val randomMeal = repository.randomMeal
 
     val popularMeal = repository.mealPopular
@@ -32,6 +29,50 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
     val allMealCategories = repository.mealCategories
 
     val getMealsByCategory = repository.mealBYCategories
+
+    val setNote =repository.setNote
+    fun saveNote(note: Note) {
+        viewModelScope.launch {
+            repository.saveNote(note)
+        }
+    }
+    fun addNote(note: Note): Job {
+        return viewModelScope.launch {
+            repository.insertNote(note)
+        }
+    }
+
+    fun deleteNote(note: Long): Job {
+        return viewModelScope.launch {
+            repository.deleteNote(note)
+        }
+    }
+
+    fun updateNote(note: Note) {
+         viewModelScope.launch {
+            repository.updateNote(note)
+        }
+    }
+
+    val getAllNotes = repository.getAllNotes
+    fun searchNotes(query: String?) {
+        repository.searchNotes(query)
+    }
+    private fun removeObserver() {
+        getAllNotes.removeObserver(observer)
+    }
+
+
+    private val observer = Observer<List<Note>?> { notetList ->
+        if (notetList != null) {
+            if (notetList.isEmpty()) {
+                viewModelScope.launch {
+                    repository.testDatabase()
+                }
+            }
+           removeObserver()
+        }
+    }
 
 
     private val _favoriteMeals = MutableLiveData<List<Meal>>()
@@ -52,7 +93,9 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-
+    fun setNote(note: List<Note>){
+        repository.setNote(note)
+    }
     fun setMeal(meal: Meal) {
         repository.setMeal(meal)
     }
@@ -84,18 +127,18 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-
-    fun deleteMealById(mealId:String){
+    fun deleteMealById(mealId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteMealById(mealId)
         }
     }
 
-    fun getMEalByIDFromApi(id:String){
+    fun getMEalByIDFromApi(id: String) {
         viewModelScope.launch {
             repository.getMealByIdFromApi(id)
         }
     }
+
     fun updateInputText(text: String) {
         _inputText.value = text
     }

@@ -11,8 +11,7 @@ import coil.load
 import com.example.mealsafari.MealViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.ItemSearchResultBinding
-import com.example.mealsafari.ui.Data.Search
-import com.example.mealsafari.ui.Data.SearchResult
+
 import syntax.com.playground.data.model.meal.Meal
 
 class SearchAdapter(

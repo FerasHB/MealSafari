@@ -5,11 +5,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.mealsafari.ui.Data.Note
 
 
-@Database(entities = [Meal::class], version = 1,exportSchema = false)
+@Database(entities = [Meal::class, Note::class], version = 1,exportSchema = false)
 abstract class MealDatabase : RoomDatabase() {
-    abstract val mealDao: MealDao
+    abstract val dataDao: DataDao
 }
 
 private lateinit var INSTANCE: MealDatabase

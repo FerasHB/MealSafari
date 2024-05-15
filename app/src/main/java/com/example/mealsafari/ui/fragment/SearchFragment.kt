@@ -60,9 +60,7 @@ class SearchFragment : Fragment() {
         }
 
 
-        viewModel.inputText.observe(
-            viewLifecycleOwner
-        ) {
+        viewModel.inputText.observe(viewLifecycleOwner) {
             viewModel.loadData(it)
         }
 

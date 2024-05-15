@@ -4,12 +4,13 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.room.Query
 import com.example.mealsafari.API.MealApi
+import com.example.mealsafari.noteExampleData.NoteExampleData
 import com.example.mealsafari.room.MealDatabase
 import com.example.mealsafari.ui.Data.Category
-import com.example.mealsafari.ui.Data.MealDetail
-import com.example.mealsafari.ui.Data.Search
-import com.example.mealsafari.ui.Data.SearchResult
+import com.example.mealsafari.ui.Data.Note
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import syntax.com.playground.data.model.meal.Meal
@@ -17,15 +18,65 @@ import syntax.com.playground.data.model.meal.Meal
 class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase) {
 
 
+    val getAllNotes= dataBase.dataDao.getAllNotes()
 
+    private var _setNote = MutableLiveData<List<Note>>()
+    val setNote: LiveData<List<Note>>
+        get() = _setNote
+    fun setNote(note: List<Note>) {
+
+        _setNote.value = note
+    }
+    suspend fun saveNote(note: Note) {
+        try {
+            dataBase.dataDao.saveNote(note)
+        } catch (e: Exception) {
+            Log.e("TAG", "saveContact: ${e.message} ")
+        }
+    }
+    suspend fun insertNote(note: Note) {
+        try {
+            dataBase.dataDao.insertNote(note)
+        } catch (e: Exception) {
+            Log.d("Repository", "Error in Database: $e")
+        }
+    }
+
+    suspend fun deleteNote(note: Long) {
+        try {
+        dataBase.dataDao.deleteNote(note)
+        } catch (e: Exception) {
+            Log.d("Repository", "Error in Database: $e")
+        }
+    }
+
+    suspend fun updateNote(note: Note) {
+        try {
+            dataBase.dataDao.updateNote(note)
+        }catch (e: Exception){
+            Log.d("Repository", "Error in Database: $e")
+
+        }
+
+    }
+
+
+
+    fun searchNotes(query: String?) = dataBase.dataDao.searchNote(query)
     suspend fun delete(favoriteMeal: Meal) {
-        dataBase.mealDao.deleteMeal(favoriteMeal)
+        dataBase.dataDao.deleteMeal(favoriteMeal)
+    }
+
+
+    suspend fun testDatabase(){
+
+        dataBase.dataDao.insertNote(NoteExampleData.note)
     }
 
     suspend fun getAllMeals() {
         withContext(Dispatchers.IO) {
             val newMealsList = apiService.retrofitService.getRandomMeal().meals
-            dataBase.mealDao.getAllMeals()
+            dataBase.dataDao.getAllMeals()
         }
     }
 
@@ -48,10 +99,6 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     val mealBYCategories: LiveData<List<Category>>
         get() = _mealByCategories
 
-    private var _mealDetail = MutableLiveData<List<MealDetail>>()
-    val mealDetail: LiveData<List<MealDetail>>
-        get() = _mealDetail
-
 
     private var _results = MutableLiveData<List<Meal>>()
 
@@ -69,14 +116,13 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     }
 
 
-
     suspend fun upsertMeal(meal: Meal) {
-        dataBase.mealDao.upsertMeal(meal)
+        dataBase.dataDao.upsertMeal(meal)
 
     }
 
     suspend fun deleteMeal(meal: Meal) {
-        dataBase.mealDao.deleteMeal(meal)
+        dataBase.dataDao.deleteMeal(meal)
     }
 
     suspend fun getRandomMeal() {
@@ -117,17 +163,19 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         }
     }
 
+
+
     fun setMeal(meal: Meal) {
 
         _randomMeal.value = meal
     }
 
     suspend fun getMealById(mealId: String): Meal {
-        return dataBase.mealDao.getMealById(mealId)
+        return dataBase.dataDao.getMealById(mealId)
     }
 
     suspend fun deleteMealById(mealId: String) {
-        dataBase.mealDao.deleteMealById(mealId)
+        dataBase.dataDao.deleteMealById(mealId)
     }
 
 

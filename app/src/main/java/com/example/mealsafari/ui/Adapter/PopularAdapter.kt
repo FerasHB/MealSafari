@@ -18,7 +18,7 @@ const val DETAIL = "DETAIL"
 
 class PopularAdapter(val meals: List<Meal>, val viewModel: MealViewModel) :
     RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
-    val onItemClick: ((MealList) -> Unit)? = null
+
 
 
     inner class PopularViewHolder(val binding: PopularItemsBinding) :
@@ -52,6 +52,7 @@ class PopularAdapter(val meals: List<Meal>, val viewModel: MealViewModel) :
             Log.e(TAG, "Error loading Data from API Popular: ")
 
             viewModel.setMeal(mealPopular)
+
 
 
         }

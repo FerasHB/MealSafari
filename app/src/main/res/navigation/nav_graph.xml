@@ -89,6 +89,11 @@
         tools:layout="@layout/fragment_add" >
         <action
             android:id="@+id/action_editeFragment_to_shoppingFragment"
-            app:destination="@id/shoppingFragment" />
+            app:destination="@id/shoppingFragment"
+            app:enterAnim="@font/myfont"/>
+        <argument
+            android:name="noteId"
+            android:defaultValue="0L"
+            app:argType="long" />
     </fragment>
 </navigation>

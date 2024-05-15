@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
->
+    android:layout_margin="2dp"
+
+    >
 
 
     <ImageView
@@ -22,13 +24,15 @@
 
     <TextView
         android:id="@+id/tv_category_btmsheet_name"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="testtest"
         android:textColor="@color/button"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toEndOf="@id/img_category"
         app:layout_constraintTop_toTopOf="@+id/img_category" />
 
@@ -36,13 +40,14 @@
         android:id="@+id/tv_read_more_btnsheet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_category_btmsheet_name"
-        app:layout_constraintStart_toEndOf="@id/img_category"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
+        android:layout_marginBottom="16dp"
         android:text="Read more ..."
+        android:textColor="@color/black"
         android:textSize="18sp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintStart_toEndOf="@id/img_category" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

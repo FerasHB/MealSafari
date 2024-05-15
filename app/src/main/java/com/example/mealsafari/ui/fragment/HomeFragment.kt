@@ -46,21 +46,23 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadRandomMeal()
         viewModel.loadAllMealCategories()
-        viewModel.loadPopularMeal("Pasta")
+        viewModel.loadPopularMeal("Lamb")
 
 
 
         viewModel.randomMeal.observe(viewLifecycleOwner) { mealObj: Meal ->
             binding.imgRandomMeal.load(mealObj.image)
         }
-         binding.ivSearch.setOnClickListener{
-             findNavController().navigate(R.id.searchFragment)
-    }
+        binding.ivSearch.setOnClickListener {
+            findNavController().navigate(R.id.searchFragment)
+        }
 
         binding.randomMealCard.setOnClickListener {
             findNavController().navigate(R.id.detailFragment)
         }
+
         viewModel.popularMeal.observe(viewLifecycleOwner) { popularMeals ->
+
             binding.recViewMealPopular.adapter = PopularAdapter(popularMeals, viewModel)
         }
 
@@ -73,25 +75,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.categoryMealsFragment)
         }
 
-        /*viewModel.observeMealBottomSheet()
-            .observe(viewLifecycleOwner, object : Observer<List<MealDetail>> {
-                override fun onChanged(value: List<MealDetail>) {
-                    val bottomSheetFragment = MealBottomSheetFragment()
-                    val bundle = Bundle()
-                    bundle.putString(CATEGORY_NAME, value[0].strCategory)
-                    bundle.putString(MEAL_AREA, value[0].strArea)
-                    bundle.putString(MEAL_NAME, value[0].strMeal)
-                    bundle.putString(MEAL_THUMB, value[0].strMealThumb)
-                    bundle.putString(MEAL_ID, value[0].idMeal)
 
-                    bottomSheetFragment.arguments = bundle
-
-                    bottomSheetFragment.show(childFragmentManager, "BottomSheetDialog")
-                }
-
-            })
-
-*/
     }
 
 
