@@ -46,7 +46,7 @@ class SearchAdapter(
                 .navigate(R.id.action_searchFragment_to_detailFragment, bundle)
             Log.e(ContentValues.TAG, "Error loading Data from API Popular: ")
 
-            viewModel.setMeal(result)
+            //viewModel.setMeal(result)
 
 
         }

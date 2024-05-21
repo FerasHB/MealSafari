@@ -53,8 +53,18 @@ class SearchFragment : Fragment() {
                 // Ergebnisse gefunden, RecyclerView anzeigen
                 binding.rvResults.visibility = View.VISIBLE
 
-                // Alphabetisch sortierte Ergebnisse anzeigen
-                val sortedResults = results.sortedBy { it.name }
+                // Ergebnisse nach Kategorien filtern
+                val categorizedResults = results.groupBy { it.category }
+
+                // Sortiere die Ergebnisse innerhalb jeder Kategorie alphabetisch nach Name
+                val sortedCategorizedResults = categorizedResults.mapValues { (_, categoryResults) ->
+                    categoryResults.sortedBy { it.name }
+                }
+
+                // Konvertiere die sortierten Ergebnisse zurück zu einer flachen Liste
+                val sortedResults = sortedCategorizedResults.values.flatten()
+
+                // RecyclerView mit den sortierten Ergebnissen aktualisieren
                 binding.rvResults.adapter = SearchAdapter(sortedResults, viewModel)
             }
         }

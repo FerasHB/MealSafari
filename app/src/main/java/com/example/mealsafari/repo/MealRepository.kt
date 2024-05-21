@@ -62,17 +62,11 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     }
 
 
-
     fun searchNotes(query: String?) = dataBase.dataDao.searchNote(query)
     suspend fun delete(favoriteMeal: Meal) {
         dataBase.dataDao.deleteMeal(favoriteMeal)
     }
 
-
-    suspend fun testDatabase(){
-
-        dataBase.dataDao.insertNote(NoteExampleData.note)
-    }
 
     suspend fun getAllMeals() {
         withContext(Dispatchers.IO) {

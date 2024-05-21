@@ -34,6 +34,7 @@ class CategoryDetailAdapter(private val mealList: List<Meal>, val viewModel: Mea
 
         holder.binding.imgCategory.load(meal.image)
         holder.binding.tvCategoryBtmsheetName.text = meal.name
+        //holder.binding.tvReadMoreBtnsheet.text = meal.category
 
 
         val bundle = Bundle()

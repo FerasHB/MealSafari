@@ -1,5 +1,6 @@
 package com.example.mealsafari.ui.Adapter
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -47,9 +48,9 @@ class PopularAdapter(val meals: List<Meal>, val viewModel: MealViewModel) :
 
             val bundle = Bundle()
             bundle.putSerializable("detail", mealPopular)
-            holder.binding.imgPopularMeal.findNavController()
+            holder.itemView.findNavController()
                 .navigate(R.id.action_homeFragment_to_detailFragment, bundle)
-            Log.e(TAG, "Error loading Data from API Popular: ")
+            Log.e(ContentValues.TAG, "Error loading Data from API Popular: ")
 
             viewModel.setMeal(mealPopular)
 

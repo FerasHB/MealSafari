@@ -48,13 +48,12 @@ class EditeFragment : Fragment() {
             note.noteTitle = binding.addNoteTitle.text.toString()
             note.noteDesc = binding.addNoteDesc.text.toString()
 
-
+            // Zurück zum ShoppingFragment navigieren
             findNavController().navigate(R.id.action_editeFragment_to_shoppingFragment)
             Toast.makeText(requireContext(), "Done", Toast.LENGTH_SHORT).show()
 
+            // Die aktualisierte Notiz speichern
             viewModel.updateNote(note)
-
-
         }
 
         binding.ivDelete.setOnClickListener {

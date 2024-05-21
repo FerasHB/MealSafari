@@ -75,24 +75,6 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
     fun searchNotes(query: String?) {
         repository.searchNotes(query)
     }
-    private fun removeObserver() {
-        getAllNotes.removeObserver(observer)
-    }
-
-
-    private val observer = Observer<List<Note>?> { notetList ->
-        if (notetList != null) {
-            if (notetList.isEmpty()) {
-                viewModelScope.launch {
-                    repository.testDatabase()
-                }
-            }
-           removeObserver()
-        }
-    }
-
-
-
 
     fun loadData(term: String) {
         viewModelScope.launch {
@@ -100,9 +82,7 @@ class MealViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun setNote(note: List<Note>){
-        repository.setNote(note)
-    }
+
     fun setMeal(meal: Meal) {
         repository.setMeal(meal)
     }
