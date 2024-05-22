@@ -10,8 +10,8 @@ import com.example.mealsafari.R
 import com.example.mealsafari.databinding.CategoryItemBinding
 import com.example.mealsafari.ui.Data.Category
 
-class CategoryAdapter(val mealCategory: List<Category>,val viewModel: ViewModel) :
-    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryHomeAdapter(val mealCategory: List<Category>, val viewModel: ViewModel) :
+    RecyclerView.Adapter<CategoryHomeAdapter.CategoryViewHolder>() {
 
     inner class CategoryViewHolder(val binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root)

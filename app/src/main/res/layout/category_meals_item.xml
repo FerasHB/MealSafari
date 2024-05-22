@@ -35,7 +35,7 @@
             app:layout_constraintEnd_toEndOf="@id/img_meal"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="7dp"
-            android:textColor="@color/button"
+            android:textColor="@color/green"
             android:text="Beef"
             android:textSize="20sp"
             android:textStyle="bold"

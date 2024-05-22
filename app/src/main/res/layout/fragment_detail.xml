@@ -8,13 +8,13 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_230sdp"
-        android:backgroundTint="@color/button">
+        android:backgroundTint="@color/green">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="@color/button"
+            app:contentScrim="@color/green"
             android:tooltipText="@string/fab_transformation_scrim_behavior"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:title="Meal name">
@@ -45,7 +45,7 @@
         android:baselineAlignBottom="false"
         android:clickable="true"
         android:src="@drawable/favorite_icon"
-        app:backgroundTint="@color/button"
+        app:backgroundTint="@color/green"
         app:fabSize="normal"
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end"

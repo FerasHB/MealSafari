@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoryDetailFragment"
-        android:name="com.example.mealsafari.ui.fragment.CategoryDetailFragment"
+        android:name="com.example.mealsafari.ui.fragment.CategoryResultsFragment"
         android:label="CategoryDetailFragment" >
         <argument
             android:name="STATUS"

@@ -80,7 +80,7 @@ class DetailFragment : Fragment() {
             }
 
             // Optional: Feedback geben, dass das Element erfolgreich als Favorit gespeichert wurde
-            Toast.makeText(requireContext(), "Das Gericht wurde als Favorit gespeichert", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Meal Saved", Toast.LENGTH_SHORT).show()
         }
 
     }

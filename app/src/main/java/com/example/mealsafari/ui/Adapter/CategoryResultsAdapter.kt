@@ -8,19 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
-import com.example.mealsafari.databinding.MealsByCategoryBinding
+
+import com.example.mealsafari.databinding.MealsResultsItemBinding
 import syntax.com.playground.data.model.meal.Meal
 
 
-class CategoryDetailAdapter(private val mealList: List<Meal>, val viewModel: ViewModel) :
-    RecyclerView.Adapter<CategoryDetailAdapter.MealByCatViewHolder>() {
+class CategoryResultsAdapter(private val mealList: List<Meal>, val viewModel: ViewModel) :
+    RecyclerView.Adapter<CategoryResultsAdapter.MealByCatViewHolder>() {
 
 
-    inner class MealByCatViewHolder(val binding: MealsByCategoryBinding) :
+    inner class MealByCatViewHolder(val binding: MealsResultsItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealByCatViewHolder {
-        val binding = MealsByCategoryBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = MealsResultsItemBinding.inflate(LayoutInflater.from(parent.context))
         return MealByCatViewHolder(binding)
     }
 

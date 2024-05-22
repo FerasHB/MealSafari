@@ -22,7 +22,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/myfont"
             android:text="Edite Note."
-            android:textColor="@color/button"
+            android:textColor="@color/green"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:clickable="true"
-            android:backgroundTint="@color/button2"
+            android:backgroundTint="@color/orang"
             android:tintMode="@color/white"
             android:src="@drawable/baseline_done_24"
             android:layout_alignParentBottom="true"

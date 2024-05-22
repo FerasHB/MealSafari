@@ -12,7 +12,7 @@ import coil.load
 import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.HomeFragmentBinding
-import com.example.mealsafari.ui.Adapter.CategoryAdapter
+import com.example.mealsafari.ui.Adapter.CategoryHomeAdapter
 import com.example.mealsafari.ui.Adapter.PopularAdapter
 import syntax.com.playground.data.model.meal.Meal
 
@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
 
         viewModel.getMealsByCategory.observe(viewLifecycleOwner) {
 
-            binding.recViewCategories.adapter = CategoryAdapter(it, viewModel)
+            binding.recViewCategories.adapter = CategoryHomeAdapter(it, viewModel)
         }
 
         binding.recViewCategories.setOnClickListener {

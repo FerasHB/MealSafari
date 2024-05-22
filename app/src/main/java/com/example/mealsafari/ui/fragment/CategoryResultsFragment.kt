@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.mealsafari.ViewModel
-import com.example.mealsafari.databinding.CategoryDetailFragmentBinding
-import com.example.mealsafari.ui.Adapter.CategoryDetailAdapter
+import com.example.mealsafari.databinding.CategoryResultsFragmentBinding
+import com.example.mealsafari.ui.Adapter.CategoryResultsAdapter
 
-class CategoryDetailFragment : Fragment() {
-    private lateinit var binding: CategoryDetailFragmentBinding
+class CategoryResultsFragment : Fragment() {
+    private lateinit var binding: CategoryResultsFragmentBinding
     private val viewModel: ViewModel by activityViewModels()
 
 
@@ -21,7 +21,7 @@ class CategoryDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = CategoryDetailFragmentBinding.inflate(inflater)
+        binding = CategoryResultsFragmentBinding.inflate(inflater)
 
         viewModel.loadMealByCategory("")
 
@@ -30,7 +30,7 @@ class CategoryDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.allMealCategories.observe(viewLifecycleOwner) {
-            binding.rvMealsByCat.adapter = CategoryDetailAdapter(it, viewModel)
+            binding.rvMealsByCat.adapter = CategoryResultsAdapter(it, viewModel)
 
         }
 
