@@ -5,14 +5,12 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.CategoryItemBinding
-import com.example.mealsafari.databinding.PopularItemsBinding
 import com.example.mealsafari.ui.Data.Category
-import syntax.com.playground.data.model.meal.Meal
 
-class CategoryAdapter(val mealCategory: List<Category>,val viewModel: MealViewModel) :
+class CategoryAdapter(val mealCategory: List<Category>,val viewModel: ViewModel) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     inner class CategoryViewHolder(val binding: CategoryItemBinding) :

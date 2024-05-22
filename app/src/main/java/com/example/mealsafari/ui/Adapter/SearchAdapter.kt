@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.ItemSearchResultBinding
 
 import syntax.com.playground.data.model.meal.Meal
 
 class SearchAdapter(
-    private val dataset: List<Meal>, private val viewModel: MealViewModel
+    private val dataset: List<Meal>, private val viewModel: ViewModel
 ) : RecyclerView.Adapter<SearchAdapter.ItemViewHolder>() {
     inner class ItemViewHolder(val binding: ItemSearchResultBinding) :
         RecyclerView.ViewHolder(binding.root)

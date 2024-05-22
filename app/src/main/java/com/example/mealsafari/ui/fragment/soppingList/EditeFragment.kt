@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI.navigateUp
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.FragmentEditeBinding
 
@@ -22,7 +21,7 @@ import com.example.mealsafari.databinding.FragmentEditeBinding
  */
 class EditeFragment : Fragment() {
     private lateinit var binding: FragmentEditeBinding
-    private val viewModel: MealViewModel by activityViewModels()
+    private val viewModel: ViewModel by activityViewModels()
     private var noteId: Long = 0
 
 

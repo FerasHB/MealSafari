@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.HomeFragmentBinding
 import com.example.mealsafari.ui.Adapter.CategoryAdapter
@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
     }
 
     private lateinit var binding: HomeFragmentBinding
-    private val viewModel: MealViewModel by activityViewModels()
+    private val viewModel: ViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

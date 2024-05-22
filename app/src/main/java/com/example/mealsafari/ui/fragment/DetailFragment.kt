@@ -8,19 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import coil.load
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.FragmentDetailBinding
-import com.google.android.material.snackbar.Snackbar
 import syntax.com.playground.data.model.meal.Meal
 
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
-    val viewModel: MealViewModel by activityViewModels()
+    val viewModel: ViewModel by activityViewModels()
 
     private var mealId = ""
 
@@ -41,6 +39,7 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //setFloatingButtonStatues()
+
 
         viewModel.getMEalByIDFromApi(mealId)
 
@@ -71,6 +70,22 @@ class DetailFragment : Fragment() {
                 startActivity(intent)
             }
         }
+        binding.btnSave.setOnClickListener {
+
+            val meal = viewModel.favoriteMeals.value
+
+
+            if (meal != null) {
+                saveFavoriteMeal(meal)
+            }
+
+            // Optional: Feedback geben, dass das Element erfolgreich als Favorit gespeichert wurde
+            Toast.makeText(requireContext(), "Das Gericht wurde als Favorit gespeichert", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+    private fun saveFavoriteMeal(meal: List<Meal>) {
+        viewModel.saveFavoriteMeal(meal)
     }
 
 

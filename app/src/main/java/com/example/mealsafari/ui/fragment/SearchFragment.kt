@@ -10,13 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.databinding.SearchFragmentBinding
 import com.example.mealsafari.ui.Adapter.SearchAdapter
 
 class SearchFragment : Fragment() {
     private lateinit var binding: SearchFragmentBinding
-    private val viewModel: MealViewModel by activityViewModels()
+    private val viewModel: ViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,7 +43,7 @@ class SearchFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        viewModel.results.observe(
+        /*viewModel.results.observe(
             viewLifecycleOwner
         ) { results ->
             if (results.isEmpty()) {
@@ -53,32 +53,34 @@ class SearchFragment : Fragment() {
                 // Ergebnisse gefunden, RecyclerView anzeigen
                 binding.rvResults.visibility = View.VISIBLE
 
-                // Ergebnisse nach Kategorien filtern
-                val categorizedResults = results.groupBy { it.category }
-
-                // Sortiere die Ergebnisse innerhalb jeder Kategorie alphabetisch nach Name
-                val sortedCategorizedResults = categorizedResults.mapValues { (_, categoryResults) ->
-                    categoryResults.sortedBy { it.name }
-                }
-
-                // Konvertiere die sortierten Ergebnisse zurück zu einer flachen Liste
-                val sortedResults = sortedCategorizedResults.values.flatten()
-
-                // RecyclerView mit den sortierten Ergebnissen aktualisieren
+                // Alphabetisch sortierte Ergebnisse anzeigen
+                val sortedResults = results.sortedBy { it.name }
                 binding.rvResults.adapter = SearchAdapter(sortedResults, viewModel)
             }
-        }
+        }*/
 
 
-        viewModel.inputText.observe(viewLifecycleOwner) {
+        viewModel.inputText.observe(
+            viewLifecycleOwner
+        ) {
             viewModel.loadData(it)
         }
 
-        viewModel.results.observe(
+
+        viewModel.results.observe(viewLifecycleOwner) { results ->
+            if (results.isEmpty()) {
+                binding.rvResults.visibility = View.GONE
+            } else {
+                binding.rvResults.visibility = View.VISIBLE
+                val sortedResults = results.sortedBy { it.name }
+                binding.rvResults.adapter = SearchAdapter(sortedResults, viewModel)
+            }
+        }
+      /*  viewModel.results.observe(
             viewLifecycleOwner
         ) {
             binding.rvResults.adapter = SearchAdapter(it, viewModel)
-        }
+        }*/
 
         binding.edSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}

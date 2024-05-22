@@ -1,7 +1,6 @@
 package com.example.mealsafari.ui.Adapter
 
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,15 +8,14 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.PopularItemsBinding
-import com.example.mealsafari.ui.Data.MealList
 import syntax.com.playground.data.model.meal.Meal
 
-const val DETAIL = "DETAIL"
 
-class PopularAdapter(val meals: List<Meal>, val viewModel: MealViewModel) :
+
+class PopularAdapter(val meals: List<Meal>, val viewModel: ViewModel) :
     RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
 
 

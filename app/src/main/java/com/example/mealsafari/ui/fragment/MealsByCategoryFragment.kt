@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.databinding.CategoryFragmentBinding
 
 import com.example.mealsafari.ui.Adapter.MealsByCategoryAdapter
 
 class MealsByCategoryFragment : Fragment() {
     private lateinit var binding: CategoryFragmentBinding
-    private val viewModel: MealViewModel by activityViewModels()
+    private val viewModel: ViewModel by activityViewModels()
 
 
     override fun onCreateView(

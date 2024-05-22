@@ -7,12 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.mealsafari.MealViewModel
-import com.example.mealsafari.R
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.databinding.FragmentAddBinding
-import com.example.mealsafari.databinding.FragmentShoppingBinding
 import com.example.mealsafari.ui.Data.Note
 
 /**
@@ -23,7 +20,7 @@ import com.example.mealsafari.ui.Data.Note
 class AddFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBinding
-    private val viewModel: MealViewModel by activityViewModels()
+    private val viewModel: ViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

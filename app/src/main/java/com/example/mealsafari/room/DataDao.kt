@@ -31,16 +31,18 @@ interface DataDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItems(itemData: List<Meal>)
 
+    @Insert
+    suspend fun saveMeal(meal: List<Meal>)
 
 
 
 
 
-    @Upsert()
-    suspend fun saveNote(note: Note)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNote(note: Note)
-
+    @Upsert()
+    suspend fun saveNote(note: Note)
     @Update
     suspend fun updateNote(note: Note)
 
@@ -51,7 +53,5 @@ interface DataDao {
     @Query("SELECT * FROM notes ORDER BY id DESC")
     fun getAllNotes(): LiveData<List<Note>>
 
-    @Query("SELECT * FROM notes WHERE noteTitle LIKE :query OR noteDesc LIKE :query")
-    fun searchNote(query: String?): LiveData<List<Note>>
 
 }

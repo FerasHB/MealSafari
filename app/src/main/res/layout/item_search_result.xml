@@ -2,84 +2,62 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/boeder"
+    android:layout_width="400dp"
+    android:layout_height="70dp"
+    android:layout_marginStart="6dp"
+    android:layout_marginEnd="6dp"
     android:layout_margin="2dp"
+
 
     >
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        app:cardCornerRadius="10dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:backgroundTint="#F3EFFB"
-        app:cardElevation="5dp"
-        app:contentPadding="8dp"
+    <TextView
+        android:id="@+id/tvMealCategory"
+        android:layout_width="215dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/black"
+        android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toEndOf="@+id/ivMela"
+        tools:text="Vegan" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+    <ImageView
+        android:id="@+id/ivMela"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_marginEnd="332dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            >
+    <TextView
+        android:id="@+id/tvMealName"
+        android:layout_width="213dp"
+        android:layout_height="31dp"
+        android:textColor="@color/button"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvMealCategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toEndOf="@+id/ivMela"
+        tools:text="Meals Name" />
 
-            <ImageView
-                android:id="@+id/ivMela"
-                android:layout_width="71dp"
-                android:layout_height="63dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+    <TextView
+        android:id="@+id/tvArea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Area"
+        android:textColor="@color/button2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.862" />
 
-            <TextView
-                android:id="@+id/tvMealName"
-                android:layout_width="213dp"
-                android:layout_height="31dp"
-                android:textColor="@color/button"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/tvMealCategory"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.09"
-                app:layout_constraintStart_toEndOf="@+id/ivMela"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.368"
-                tools:text="Meals Name" />
-
-            <TextView
-                android:id="@+id/tvMealCategory"
-                android:layout_width="216dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="16dp"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.095"
-                app:layout_constraintStart_toEndOf="@+id/ivMela"
-                tools:text="Vegan" />
-
-            <TextView
-                android:id="@+id/tvArea"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Area"
-                android:textColor="@color/button2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

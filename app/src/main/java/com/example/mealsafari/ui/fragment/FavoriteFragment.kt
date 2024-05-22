@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.databinding.FavoriteFragmentBinding
 import com.example.mealsafari.room.DataDao
 import com.example.mealsafari.ui.Adapter.FavoriteAdapter
@@ -14,7 +14,7 @@ import com.example.mealsafari.ui.Adapter.FavoriteAdapter
 class FavoriteFragment:Fragment() {
     private lateinit var binding: FavoriteFragmentBinding
     private lateinit var favoriteDataDao: DataDao
-    val viewModel: MealViewModel by activityViewModels()
+    val viewModel: ViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

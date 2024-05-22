@@ -4,13 +4,10 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.room.Query
 import com.example.mealsafari.API.MealApi
-import com.example.mealsafari.noteExampleData.NoteExampleData
 import com.example.mealsafari.room.MealDatabase
 import com.example.mealsafari.ui.Data.Category
 import com.example.mealsafari.ui.Data.Note
-
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import syntax.com.playground.data.model.meal.Meal
@@ -19,62 +16,6 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
 
 
     val getAllNotes= dataBase.dataDao.getAllNotes()
-
-    private var _setNote = MutableLiveData<List<Note>>()
-    val setNote: LiveData<List<Note>>
-        get() = _setNote
-    fun setNote(note: List<Note>) {
-
-        _setNote.value = note
-    }
-    suspend fun saveNote(note: Note) {
-        try {
-            dataBase.dataDao.saveNote(note)
-        } catch (e: Exception) {
-            Log.e("TAG", "saveContact: ${e.message} ")
-        }
-    }
-    suspend fun insertNote(note: Note) {
-        try {
-            dataBase.dataDao.insertNote(note)
-        } catch (e: Exception) {
-            Log.d("Repository", "Error in Database: $e")
-        }
-    }
-
-    suspend fun deleteNote(note: Long) {
-        try {
-        dataBase.dataDao.deleteNote(note)
-        } catch (e: Exception) {
-            Log.d("Repository", "Error in Database: $e")
-        }
-    }
-
-    suspend fun updateNote(note: Note) {
-        try {
-            dataBase.dataDao.updateNote(note)
-
-        }catch (e: Exception){
-            Log.d("Repository", "Error in Database: $e")
-
-        }
-
-    }
-
-
-    fun searchNotes(query: String?) = dataBase.dataDao.searchNote(query)
-    suspend fun delete(favoriteMeal: Meal) {
-        dataBase.dataDao.deleteMeal(favoriteMeal)
-    }
-
-
-    suspend fun getAllMeals() {
-        withContext(Dispatchers.IO) {
-            val newMealsList = apiService.retrofitService.getRandomMeal().meals
-            dataBase.dataDao.getAllMeals()
-        }
-    }
-
 
     private var _randomMeal = MutableLiveData<Meal>()
     val randomMeal: LiveData<Meal>
@@ -101,6 +42,51 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         get() = _results
 
 
+    suspend fun saveNote(note: Note) {
+        try {
+            dataBase.dataDao.saveNote(note)
+        } catch (e: Exception) {
+            Log.e("TAG", "saveContact: ${e.message} ")
+        }
+    }
+
+
+    suspend fun deleteNote(note: Long) {
+        try {
+        dataBase.dataDao.deleteNote(note)
+        } catch (e: Exception) {
+            Log.d("Repository", "Error in Database: $e")
+        }
+    }
+
+    suspend fun updateNote(note: Note) {
+        try {
+            dataBase.dataDao.updateNote(note)
+
+        }catch (e: Exception){
+            Log.d("Repository", "Error in Database: $e")
+
+        }
+
+    }
+
+
+
+    suspend fun delete(favoriteMeal: Meal) {
+        dataBase.dataDao.deleteMeal(favoriteMeal)
+    }
+
+
+    suspend fun getAllMeals() {
+        withContext(Dispatchers.IO) {
+            val newMealsList = apiService.retrofitService.getRandomMeal().meals
+            dataBase.dataDao.getAllMeals()
+        }
+    }
+
+
+
+
     suspend fun getResults(term: String) {
         try {
             val resultList = apiService.retrofitService.getBySearch(term)
@@ -111,14 +97,7 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     }
 
 
-    suspend fun upsertMeal(meal: Meal) {
-        dataBase.dataDao.upsertMeal(meal)
 
-    }
-
-    suspend fun deleteMeal(meal: Meal) {
-        dataBase.dataDao.deleteMeal(meal)
-    }
 
     suspend fun getRandomMeal() {
         try {
@@ -171,6 +150,10 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
 
     suspend fun deleteMealById(mealId: String) {
         dataBase.dataDao.deleteMealById(mealId)
+    }
+
+    suspend fun saveFavoriteMeal(meal: List<Meal>) {
+        dataBase.dataDao.saveMeal(meal)
     }
 
 

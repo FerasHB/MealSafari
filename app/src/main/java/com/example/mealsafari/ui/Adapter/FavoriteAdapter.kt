@@ -3,15 +3,13 @@ package com.example.mealsafari.ui.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.bumptech.glide.Glide
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.FavoriteItemBinding
-import com.example.mealsafari.databinding.PopularItemsBinding
 import syntax.com.playground.data.model.meal.Meal
 
-class FavoriteAdapter(val meals: List<Meal>, val viewModel: MealViewModel) :
+class FavoriteAdapter(val meals: List<Meal>, val viewModel: ViewModel) :
     RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
     private var favoriteMeals: List<Meal> = ArrayList()
     private lateinit var onFavoriteClickListener: OnFavoriteClickListener

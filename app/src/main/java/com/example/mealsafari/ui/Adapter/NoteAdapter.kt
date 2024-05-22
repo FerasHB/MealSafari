@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.databinding.SoppingListItemBinding
 import com.example.mealsafari.ui.Data.Note
 import com.example.mealsafari.ui.fragment.soppingList.ShoppingFragmentDirections
@@ -14,7 +14,7 @@ import com.example.mealsafari.ui.fragment.soppingList.ShoppingFragmentDirections
  * @param note Die Liste der Notizen, die angezeigt werden sollen.
  * @param viewModel Ein ViewModel für den Zugriff auf die Daten.
  */
-class NoteAdapter(val note: List<Note>, val viewModel: MealViewModel) :
+class NoteAdapter(val note: List<Note>, val viewModel: ViewModel) :
     RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     /**

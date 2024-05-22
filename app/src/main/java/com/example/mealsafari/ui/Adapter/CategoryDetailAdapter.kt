@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.MealsByCategoryBinding
 import syntax.com.playground.data.model.meal.Meal
 
 
-class CategoryDetailAdapter(private val mealList: List<Meal>, val viewModel: MealViewModel) :
+class CategoryDetailAdapter(private val mealList: List<Meal>, val viewModel: ViewModel) :
     RecyclerView.Adapter<CategoryDetailAdapter.MealByCatViewHolder>() {
 
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.mealsafari.MealViewModel
+import com.example.mealsafari.ViewModel
 import com.example.mealsafari.databinding.FragmentShoppingBinding
 import com.example.mealsafari.ui.Adapter.NoteAdapter
 
@@ -16,7 +16,7 @@ import com.example.mealsafari.ui.Adapter.NoteAdapter
  */
 class ShoppingFragment : Fragment() {
     private lateinit var binding: FragmentShoppingBinding
-    private val viewModel: MealViewModel by activityViewModels()
+    private val viewModel: ViewModel by activityViewModels()
 
     /**
      * Erstellt die Ansicht für dieses Fragment.
