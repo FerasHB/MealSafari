@@ -41,7 +41,7 @@ class PopularAdapter(val meals: List<Meal>, val viewModel: ViewModel) :
         holder.binding.popularName.text = mealPopular.name
 
 
-        holder.binding.root.setOnClickListener {
+        /*holder.binding.root.setOnClickListener {
 
 
             val bundle = Bundle()
@@ -52,6 +52,19 @@ class PopularAdapter(val meals: List<Meal>, val viewModel: ViewModel) :
 
             viewModel.setMeal(mealPopular)
 
+
+
+        }*/
+        holder.binding.root.setOnClickListener {
+
+
+            val bundle = Bundle()
+            bundle.putSerializable("detail", mealPopular)
+            holder.itemView.findNavController()
+                .navigate(R.id.action_homeFragment_to_detailFragment, bundle)
+            Log.e(ContentValues.TAG, "Error loading Data from API Search: ")
+
+            viewModel.setMeal(mealPopular)
 
 
         }

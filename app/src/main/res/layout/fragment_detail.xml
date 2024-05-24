@@ -14,8 +14,11 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="@color/green"
             android:tooltipText="@string/fab_transformation_scrim_behavior"
+
+            app:collapsedTitleGravity="center"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:contentScrim="@color/orang"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:title="Meal name">
 
@@ -24,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+
                 app:layout_collapseMode="parallax" />
 
             <androidx.appcompat.widget.Toolbar

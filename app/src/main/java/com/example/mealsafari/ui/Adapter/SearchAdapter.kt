@@ -44,9 +44,9 @@ class SearchAdapter(
             bundle.putSerializable("detail", result)
             holder.itemView.findNavController()
                 .navigate(R.id.action_searchFragment_to_detailFragment, bundle)
-            Log.e(ContentValues.TAG, "Error loading Data from API Popular: ")
+            Log.e(ContentValues.TAG, "Error loading Data from API Search: ")
 
-            //viewModel.setMeal(result)
+            viewModel.setMeal(result)
 
 
         }

@@ -20,7 +20,8 @@ class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     val viewModel: ViewModel by activityViewModels()
 
-    private var mealId = ""
+
+
 
 
     // Diese Methode wird aufgerufen, um die View für dieses Fragment zu erstellen.
@@ -38,11 +39,10 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //setFloatingButtonStatues()
 
 
-        viewModel.getMEalByIDFromApi(mealId)
-
+       //viewModel.getMEalByIDFromApi(mealId.idMeal.toString())
+        viewModel.loadData("")
 
         // Beobachten Sie das LiveData-Objekt randomMeal aus dem ViewModel
         viewModel.randomMeal.observe(viewLifecycleOwner) { mealObj: Meal ->
@@ -70,6 +70,7 @@ class DetailFragment : Fragment() {
                 startActivity(intent)
             }
         }
+
         binding.btnSave.setOnClickListener {
 
             val meal = viewModel.favoriteMeals.value

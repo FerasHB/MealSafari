@@ -28,4 +28,4 @@ data class Meal(
     @Json(name = "strYoutube")
     val video: String = "",
 
-) : Serializable
+    ) : Serializable

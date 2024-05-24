@@ -47,8 +47,8 @@
                         android:id="@+id/iv_search"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="match_parent"
-                        android:scaleType="center"
-                        android:src="@drawable/vectorsearch" />
+
+                        android:src="@drawable/search_icon" />
 
 
                 </LinearLayout>
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/myfont"
-                    android:text="Over populer Items"
+                    android:text="For you"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp"
                     android:textStyle="bold"
@@ -115,6 +115,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/tv_over_popular"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
+                    tools:listitem="@layout/popular_items"
                     app:layout_constraintTop_toBottomOf="@+id/tv_over_popular" />
 
                 <TextView
@@ -150,7 +151,10 @@
                         android:orientation="vertical"
                         android:scrollbars="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        app:spanCount="3" />
+                        app:spanCount="3"
+                        tools:listitem="@layout/category_item"
+
+                        />
 
                 </androidx.cardview.widget.CardView>
 
