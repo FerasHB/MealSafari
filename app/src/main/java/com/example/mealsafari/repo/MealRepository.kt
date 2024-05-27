@@ -144,17 +144,9 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         _randomMeal.value = meal
     }
 
-    suspend fun getMealById(mealId: String): Meal {
-        return dataBase.dataDao.getMealById(mealId)
-    }
 
-    suspend fun deleteMealById(mealId: String) {
-        dataBase.dataDao.deleteMealById(mealId)
-    }
 
-    suspend fun saveFavoriteMeal(meal: List<Meal>) {
-        dataBase.dataDao.saveMeal(meal)
-    }
+
 
 
     fun getMealByIdFromApi(id: String) {
@@ -164,6 +156,16 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         } catch (e: Exception) {
             Log.e(TAG, "Error loading Data from API getAllMealCategories(): $e")
         }
+    }
+
+    val getAllMeals: LiveData<List<Meal>> = dataBase.dataDao.getAllMeals()
+
+    suspend fun upsertMeal(meal: Meal) {
+        dataBase.dataDao.upsertMeal(meal)
+    }
+
+    suspend fun deleteMeal(meal: Meal) {
+        dataBase.dataDao.deleteMeal(meal)
     }
 
 }

@@ -51,9 +51,4 @@ class MainActivity : AppCompatActivity() {
         }
         onBackPressedDispatcher.addCallback(callback)
     }
-
-  /*  private fun setupBottomNavigation() {
-        val navHost = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        binding.bottomNavigationView.setupWithNavController(navHost.navController)
-    }*/
 }

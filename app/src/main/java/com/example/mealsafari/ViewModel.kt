@@ -33,6 +33,8 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     val getAllNotes = repository.getAllNotes
 
 
+
+
     private val _favoriteMeals = MutableLiveData<List<Meal>>()
     val favoriteMeals: LiveData<List<Meal>>
         get() = _favoriteMeals
@@ -114,9 +116,18 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-    fun saveFavoriteMeal(meal: List<Meal>) {
+
+
+
+    fun addToFavorites(meal: Meal) {
         viewModelScope.launch {
-            repository.saveFavoriteMeal(meal)
+            repository.upsertMeal(meal)
+        }
+    }
+
+    fun removeFromFavorites(meal: Meal) {
+        viewModelScope.launch {
+            repository.deleteMeal(meal)
         }
     }
 

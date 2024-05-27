@@ -10,6 +10,7 @@ import com.example.mealsafari.ViewModel
 import com.example.mealsafari.databinding.FavoriteFragmentBinding
 import com.example.mealsafari.room.DataDao
 import com.example.mealsafari.ui.Adapter.FavoriteAdapter
+import syntax.com.playground.data.model.meal.Meal
 
 class FavoriteFragment:Fragment() {
     private lateinit var binding: FavoriteFragmentBinding
@@ -30,15 +31,16 @@ class FavoriteFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter = FavoriteAdapter(emptyList(), viewModel, object : FavoriteAdapter.OnFavoriteClickListener {
+            override fun onFavoriteClick(meal: Meal) {
+                viewModel.removeFromFavorites(meal)
+            }
+        })
 
+        binding.favRecView.adapter = adapter
 
         viewModel.favoriteMeals.observe(viewLifecycleOwner) { favoriteMeals ->
-
-
-           binding.favRecView.adapter = FavoriteAdapter(favoriteMeals,viewModel)
-
-
-
+            adapter.favoriteMeals = favoriteMeals
 
         }
     }

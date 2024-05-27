@@ -21,9 +21,6 @@ class DetailFragment : Fragment() {
     val viewModel: ViewModel by activityViewModels()
 
 
-
-
-
     // Diese Methode wird aufgerufen, um die View für dieses Fragment zu erstellen.
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,8 +37,7 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-       //viewModel.getMEalByIDFromApi(mealId.idMeal.toString())
+        //viewModel.getMEalByIDFromApi(mealId.idMeal.toString())
         viewModel.loadData("")
 
         // Beobachten Sie das LiveData-Objekt randomMeal aus dem ViewModel
@@ -50,7 +46,7 @@ class DetailFragment : Fragment() {
             binding.imgMealDetail.load(mealObj.image)
 
             // Setzen der Texte für die verschiedenen TextViews
-           binding.tvCategoryArea.text = mealObj.area
+            binding.tvCategoryArea.text = mealObj.area
             binding.tvCategoryInfo.text = mealObj.category
             binding.tvInstructions.text = mealObj.instruction
 
@@ -71,24 +67,8 @@ class DetailFragment : Fragment() {
             }
         }
 
-        binding.btnSave.setOnClickListener {
-
-            val meal = viewModel.favoriteMeals.value
-
-
-            if (meal != null) {
-                saveFavoriteMeal(meal)
-            }
-
-            // Optional: Feedback geben, dass das Element erfolgreich als Favorit gespeichert wurde
-            Toast.makeText(requireContext(), "Meal Saved", Toast.LENGTH_SHORT).show()
-        }
 
     }
-    private fun saveFavoriteMeal(meal: List<Meal>) {
-        viewModel.saveFavoriteMeal(meal)
-    }
-
 
 
 }

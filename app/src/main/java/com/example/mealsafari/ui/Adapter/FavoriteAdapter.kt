@@ -9,10 +9,11 @@ import com.example.mealsafari.R
 import com.example.mealsafari.databinding.FavoriteItemBinding
 import syntax.com.playground.data.model.meal.Meal
 
-class FavoriteAdapter(val meals: List<Meal>, val viewModel: ViewModel) :
+class FavoriteAdapter( var favoriteMeals: List<Meal>,
+                       private val viewModel: ViewModel,
+                       private val onFavoriteClickListener: OnFavoriteClickListener) :
     RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
-    private var favoriteMeals: List<Meal> = ArrayList()
-    private lateinit var onFavoriteClickListener: OnFavoriteClickListener
+
 
     inner class FavoriteViewHolder(val binding: FavoriteItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -23,20 +24,20 @@ class FavoriteAdapter(val meals: List<Meal>, val viewModel: ViewModel) :
     }
 
     override fun getItemCount(): Int {
-        return meals.size
+        return favoriteMeals.size
     }
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
-        val meals = meals[position]
+        val meal = favoriteMeals[position]
         holder.binding.apply {
-            tvFavMealName.text = favoriteMeals[position].name
+            tvFavMealName.text = meal.name
             Glide.with(holder.itemView)
-                .load(favoriteMeals[position].image)
-                .error(R.drawable.backrounde)
+                .load(meal.image)
+
                 .into(imgFavMeal)
-        }
-        holder.itemView.setOnClickListener {
-            onFavoriteClickListener.onFavoriteClick(favoriteMeals[position])
+            root.setOnClickListener {
+                onFavoriteClickListener.onFavoriteClick(meal)
+            }
         }
     }
 
