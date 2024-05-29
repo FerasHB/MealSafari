@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadRandomMeal()
         viewModel.loadAllMealCategories()
-        viewModel.loadPopularMeal("Lamb")
+        viewModel.loadPopularMeal("Dessert")
 
 
 

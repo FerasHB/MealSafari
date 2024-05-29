@@ -5,6 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.soppingList.EditeFragment">
+    <ImageView
+        android:id="@+id/ivMelas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+
+        android:src="@drawable/kitchen_img"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -46,7 +59,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/addNoteTitle"
             android:layout_marginTop="12dp"
-            android:background="#7900E676"
+            android:background="#66FF9100"
             android:fontFamily="@font/myfont"
             android:gravity="top"
             android:hint="Enter the description"
