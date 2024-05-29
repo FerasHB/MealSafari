@@ -14,14 +14,22 @@ import syntax.com.playground.data.model.meal.Meal
 @Dao
 interface DataDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsertMeal(meal: Meal)
+    suspend fun insertMeal(meal: Meal)
+
+    @Query("SELECT * FROM meal_information")
+    fun getAllMeals(): LiveData<List<Meal>>
 
     @Delete
     suspend fun deleteMeal(meal: Meal)
 
-    @Query("SELECT * FROM meal_information ORDER BY idMeal")
-    fun getAllMeals(): LiveData<List<Meal>>
 
+
+
+    @Query("SELECT * FROM meal_information ORDER BY idMeal")
+    fun getAllMealsById(): LiveData<List<Meal>>
+
+    @Upsert
+    suspend fun saveMeal(meal: Meal)
     @Query("SELECT * FROM meal_information WHERE idMeal = :id")
     fun getMealById(id: Long): LiveData<Meal>
 
@@ -29,13 +37,12 @@ interface DataDao {
     suspend fun deleteMealById(id: Long)
 
 
-
-
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNote(note: Note)
+
     @Upsert()
     suspend fun saveNote(note: Note)
+
     @Update
     suspend fun updateNote(note: Note)
 

@@ -24,7 +24,11 @@
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.mealsafari.ui.fragment.FavoriteFragment"
-        android:label="FavoriteFragment" />
+        android:label="FavoriteFragment" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.mealsafari.ui.fragment.DetailFragment"

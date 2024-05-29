@@ -33,6 +33,8 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     val getAllNotes = repository.getAllNotes
 
 
+    val allMeals = repository.allMeals
+
 
 
     private val _favoriteMeals = MutableLiveData<List<Meal>>()
@@ -121,7 +123,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
     fun addToFavorites(meal: Meal) {
         viewModelScope.launch {
-            repository.upsertMeal(meal)
+            repository.insert(meal)
         }
     }
 

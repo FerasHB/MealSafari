@@ -80,7 +80,7 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     suspend fun getAllMeals() {
         withContext(Dispatchers.IO) {
             val newMealsList = apiService.retrofitService.getRandomMeal().meals
-            dataBase.dataDao.getAllMeals()
+            dataBase.dataDao.getAllMealsById()
         }
     }
 
@@ -158,10 +158,10 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         }
     }
 
-    val getAllMeals: LiveData<List<Meal>> = dataBase.dataDao.getAllMeals()
+    val allMeals: LiveData<List<Meal>> = dataBase.dataDao.getAllMeals()
 
-    suspend fun upsertMeal(meal: Meal) {
-        dataBase.dataDao.upsertMeal(meal)
+    suspend fun insert(meal: Meal) {
+        dataBase.dataDao.insertMeal(meal)
     }
 
     suspend fun deleteMeal(meal: Meal) {

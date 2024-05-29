@@ -20,7 +20,6 @@ class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     val viewModel: ViewModel by activityViewModels()
 
-
     // Diese Methode wird aufgerufen, um die View für dieses Fragment zu erstellen.
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,8 +36,10 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
+
         //viewModel.getMEalByIDFromApi(mealId.idMeal.toString())
-        viewModel.loadData("")
+        //viewModel.loadData("")
 
         // Beobachten Sie das LiveData-Objekt randomMeal aus dem ViewModel
         viewModel.randomMeal.observe(viewLifecycleOwner) { mealObj: Meal ->
@@ -57,18 +58,29 @@ class DetailFragment : Fragment() {
             binding.collapsingToolbar.setCollapsedTitleTextColor(resources.getColor(R.color.white))
             binding.collapsingToolbar.setExpandedTitleColor(resources.getColor(R.color.black))
 
-            // OnClickListener für das ImageView, das das YouTube-Video starten soll
-            binding.imgYoutube.setOnClickListener {
-                // Erstellen eines Intent, um das YouTube-Video zu öffnen
-                val intent = Intent(ACTION_VIEW, Uri.parse(mealObj.video))
 
-                // Starten des Intents
-                startActivity(intent)
-            }
+
+            // OnClickListener für das ImageView, das das YouTube-Video starten soll
+
+
+        }
+        binding.btnSave.setOnClickListener {
+            saveMeal(viewModel.randomMeal.value!!)
+        }
+
+        binding.imgYoutube.setOnClickListener {
+            // Erstellen eines Intent, um das YouTube-Video zu öffnen
+            val intent = Intent(ACTION_VIEW, Uri.parse(viewModel.randomMeal.value!!.video))
+
+            // Starten des Intents
+            startActivity(intent)
         }
 
 
     }
 
+    private fun saveMeal(meal:Meal) {
+        viewModel.addToFavorites(meal)
+    }
 
 }
