@@ -23,18 +23,12 @@ interface DataDao {
     suspend fun deleteMeal(meal: Meal)
 
 
-
-
-    @Query("SELECT * FROM meal_information ORDER BY idMeal")
-    fun getAllMealsById(): LiveData<List<Meal>>
-
-    @Upsert
-    suspend fun saveMeal(meal: Meal)
     @Query("SELECT * FROM meal_information WHERE idMeal = :id")
-    fun getMealById(id: Long): LiveData<Meal>
+    fun getMealById(id: Long): Meal
 
-    @Query("DELETE FROM meal_information WHERE idMeal = :id")
-    suspend fun deleteMealById(id: Long)
+
+    @Query("DELETE FROM meal_information WHERE idMeal =:id")
+    fun deleteMealById(id:Long)
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

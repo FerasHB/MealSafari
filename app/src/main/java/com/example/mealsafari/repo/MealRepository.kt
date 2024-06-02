@@ -15,7 +15,9 @@ import syntax.com.playground.data.model.meal.Meal
 class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase) {
 
 
-    val getAllNotes= dataBase.dataDao.getAllNotes()
+    val getAllNotes = dataBase.dataDao.getAllNotes()
+
+    val allMeals: LiveData<List<Meal>> = dataBase.dataDao.getAllMeals()
 
     private var _randomMeal = MutableLiveData<Meal>()
     val randomMeal: LiveData<Meal>
@@ -53,7 +55,7 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
 
     suspend fun deleteNote(note: Long) {
         try {
-        dataBase.dataDao.deleteNote(note)
+            dataBase.dataDao.deleteNote(note)
         } catch (e: Exception) {
             Log.d("Repository", "Error in Database: $e")
         }
@@ -63,7 +65,7 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         try {
             dataBase.dataDao.updateNote(note)
 
-        }catch (e: Exception){
+        } catch (e: Exception) {
             Log.d("Repository", "Error in Database: $e")
 
         }
@@ -71,32 +73,14 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     }
 
 
-
-    suspend fun delete(favoriteMeal: Meal) {
-        dataBase.dataDao.deleteMeal(favoriteMeal)
-    }
-
-
-    suspend fun getAllMeals() {
-        withContext(Dispatchers.IO) {
-            val newMealsList = apiService.retrofitService.getRandomMeal().meals
-            dataBase.dataDao.getAllMealsById()
-        }
-    }
-
-
-
-
     suspend fun getResults(term: String) {
         try {
             val resultList = apiService.retrofitService.getBySearch(term)
-            _results.value = resultList.meals
+            _mealPopular.value = resultList.meals
         } catch (e: java.lang.Exception) {
             Log.e(TAG, "Error loading Data from API: $e")
         }
     }
-
-
 
 
     suspend fun getRandomMeal() {
@@ -137,6 +121,20 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         }
     }
 
+    suspend fun getMealById(mealId: Long): Meal? {
+        return try {
+            val result = apiService.retrofitService.getMealById(mealId)
+            result.meals.firstOrNull()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error loading Data from API getMealById(): $e")
+            null
+        }
+    }
+
+
+     fun deleteMealById(mealId: Long) {
+        return dataBase.dataDao.deleteMealById(mealId)
+    }
 
 
     fun setMeal(meal: Meal) {
@@ -147,19 +145,6 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
 
 
 
-
-
-    fun getMealByIdFromApi(id: String) {
-        try {
-            val result = apiService.retrofitService.getMealById(id)
-            _randomMeal.postValue(result.meals[0])
-        } catch (e: Exception) {
-            Log.e(TAG, "Error loading Data from API getAllMealCategories(): $e")
-        }
-    }
-
-    val allMeals: LiveData<List<Meal>> = dataBase.dataDao.getAllMeals()
-
     suspend fun insert(meal: Meal) {
         dataBase.dataDao.insertMeal(meal)
     }
@@ -168,4 +153,8 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         dataBase.dataDao.deleteMeal(meal)
     }
 
+
+
 }
+
+

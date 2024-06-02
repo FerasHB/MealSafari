@@ -62,14 +62,7 @@
             app:spanCount="2"
             tools:listitem="@layout/sopping_list_item" />
 
-        <ImageView
-            android:id="@+id/emptyNotesImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-
-            android:src="@drawable/empty_backround"
-            android:visibility="gone" />
+     
 
         <TextView
             android:id="@+id/textView3"

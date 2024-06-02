@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/orang"
+        android:backgroundTint="@color/cardColor"
         app:menu="@menu/menu_botoom"
         app:itemRippleColor="@color/green"
         />

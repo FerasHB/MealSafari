@@ -1,0 +1,9 @@
+<resources>
+    <color name="primaryColorNight">#BB86FC</color>
+    <color name="primaryDarkColorNight">#3700B3</color>
+    <color name="primaryTextColorNight">#FFFFFF</color>
+    <color name="secondaryColorNight">#03DAC5</color>
+    <color name="secondaryDarkColorNight">#03DAC5</color>
+    <color name="secondaryTextColorNight">#000000</color>
+    <!-- Weitere Farben hier definieren -->
+</resources>

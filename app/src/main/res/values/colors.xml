@@ -11,7 +11,7 @@
     <color name="secondaryColor">#03DAC5</color>
     <color name="secondaryDarkColor">#018786</color>
     <color name="secondaryTextColor">#000000</color>
-    <color name="backgroundColor">#FFFFFF</color>
+    <color name="backgroundColor">@color/cardColor</color>
     <color name="textColor">#000000</color>
     <color name="cardColor">#FFFFFF</color>
 </resources>

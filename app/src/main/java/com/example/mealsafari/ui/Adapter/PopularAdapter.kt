@@ -35,28 +35,9 @@ class PopularAdapter(val meals: List<Meal>, val viewModel: ViewModel) :
     override fun onBindViewHolder(holder: PopularViewHolder, position: Int) {
         val mealPopular = meals[position]
 
-
-        // Laden des Bildes in das ImageView im ViewHolder
         holder.binding.imgPopularMeal.load(mealPopular.image)
-       // holder.binding.popularName.text = mealPopular.name
 
-
-        /*holder.binding.root.setOnClickListener {
-
-
-            val bundle = Bundle()
-            bundle.putSerializable("detail", mealPopular)
-            holder.itemView.findNavController()
-                .navigate(R.id.action_homeFragment_to_detailFragment, bundle)
-            Log.e(ContentValues.TAG, "Error loading Data from API Popular: ")
-
-            viewModel.setMeal(mealPopular)
-
-
-
-        }*/
         holder.binding.root.setOnClickListener {
-
 
             val bundle = Bundle()
             bundle.putSerializable("detail", mealPopular)
@@ -64,7 +45,8 @@ class PopularAdapter(val meals: List<Meal>, val viewModel: ViewModel) :
                 .navigate(R.id.action_homeFragment_to_detailFragment, bundle)
             Log.e(ContentValues.TAG, "Error loading Data from API Search: ")
 
-            viewModel.setMeal(mealPopular)
+           viewModel.setMeal(mealPopular)
+            viewModel.getMealById(mealPopular.idMeal)
 
 
         }

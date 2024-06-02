@@ -18,16 +18,6 @@ import syntax.com.playground.data.model.meal.Meal
 
 class HomeFragment : Fragment() {
 
-    companion object {
-        const val MEAL_ID = "com.example.MealSafari.ui.fragments.idMeal"
-        const val MEAL_NAME = "com.example.MealSafari.ui.fragments.nameMeal"
-        const val MEAL_THUMB = "com.example.MealSafari.ui.fragments.thumbMeal"
-        const val CATEGORY_NAME = " com.example.MealSafari.ui.fragments.categoryName"
-        const val MEAL_STR = " com.example.MealSafari.ui.fragments.strMeal"
-        const val MEAL_AREA = " com.example.MealSafari.ui.fragments.strArea"
-
-
-    }
 
     private lateinit var binding: HomeFragmentBinding
     private val viewModel: ViewModel by activityViewModels()
@@ -50,7 +40,7 @@ class HomeFragment : Fragment() {
 
 
 
-        viewModel.randomMeal.observe(viewLifecycleOwner) { mealObj: Meal ->
+        viewModel.meals.observe(viewLifecycleOwner) { mealObj: Meal ->
             binding.imgRandomMeal.load(mealObj.image)
         }
         binding.ivSearch.setOnClickListener {

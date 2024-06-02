@@ -12,15 +12,17 @@ import com.example.mealsafari.API.MealApi
 import com.example.mealsafari.repo.MealRepository
 import com.example.mealsafari.room.getDatabase
 import com.example.mealsafari.ui.Data.Note
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import syntax.com.playground.data.model.meal.Meal
 
 class ViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = MealRepository(MealApi, getDatabase(application))
 
-    val randomMeal = repository.randomMeal
+    val meals = repository.randomMeal
 
     val popularMeal = repository.mealPopular
 
@@ -106,12 +108,6 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun getMEalByIDFromApi(id: String) {
-        viewModelScope.launch {
-            repository.getMealByIdFromApi(id)
-        }
-    }
-
     fun updateInputText(text: String) {
 
         _inputText.value = text
@@ -130,6 +126,32 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     fun removeFromFavorites(meal: Meal) {
         viewModelScope.launch {
             repository.deleteMeal(meal)
+        }
+    }
+
+    fun deleteMealById(mealId: Long) {
+        viewModelScope.launch {
+            repository.deleteMealById(mealId)
+        }
+    }
+
+   /* fun getMealById(mealId: Long) {
+        viewModelScope.launch {
+            repository.getMealById(mealId)
+        }
+    }*/
+
+
+
+    private val _mealDetails = MutableLiveData<Meal>()
+    val mealDetails: LiveData<Meal> = _mealDetails
+
+
+    fun getMealById(mealId: Long) {
+        viewModelScope.launch {
+            repository.getMealById(mealId).let {
+                _mealDetails.postValue(it)
+            }
         }
     }
 

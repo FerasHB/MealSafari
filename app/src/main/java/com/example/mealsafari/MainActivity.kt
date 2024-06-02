@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.searchFragment -> binding.bottomNavigationView.visibility = View.GONE
                 R.id.categoryDetailFragment -> binding.bottomNavigationView.visibility = View.GONE
                 R.id.editeFragment -> binding.bottomNavigationView.visibility = View.GONE
+                R.id.addFragment -> binding.bottomNavigationView.visibility = View.GONE
 
                 else -> binding.bottomNavigationView.visibility = View.VISIBLE
             }

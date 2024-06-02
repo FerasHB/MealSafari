@@ -1,7 +1,9 @@
 package com.example.mealsafari.ui.Adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -42,6 +44,7 @@ class FavoriteAdapter( private var favoriteMeals: List<Meal>, var viewModel: Vie
 
         holder.binding.ivDelete.setOnClickListener {
             viewModel.removeFromFavorites(meal)
+            Toast.makeText(holder.itemView.context, "${meal.name} removed from favorites", Toast.LENGTH_SHORT).show()
         }
     }
 
