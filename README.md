@@ -33,10 +33,6 @@ Die App wurde mit Kotlin entwickelt und verwendet verschiedene Technologien und 
 
 Die App kann auf Android-Geräten mit Android 5.0 (API-Level 21) und höher installiert werden. Laden Sie die APK-Datei herunter und installieren Sie sie auf Ihrem Gerät.
 
-## Mitwirkende
-
-- Max Mustermann (@maxmustermann)
-- Lisa Müller (@lisamueller)
 
 ## Lizenz
 
