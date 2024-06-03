@@ -17,6 +17,8 @@ MealSafari ist eine Android-App, die Benutzern ermöglicht, verschiedene Mahlzei
 
 
 ![Screenshot_20240603_141524](https://github.com/SI-Classroom-Batch-014/batch14-abschlussprojekt-android-FerasHB/assets/152178763/fb9f3a4c-9709-4e45-aa9d-286b16d943e0)
+![Screenshot_20240603_140611](https://github.com/SI-Classroom-Batch-014/batch14-abschlussprojekt-android-FerasHB/assets/152178763/06aa9cea-faa7-480a-b07e-39f2d8eeeae6)
+
 
 
 ## Technologien und Architektur
