@@ -20,7 +20,8 @@
             app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Display1"
             app:contentScrim="@color/orang"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:title="Meal name">
+            app:title="Meal name"
+            >
 
             <ImageView
                 android:id="@+id/img_meal_detail"

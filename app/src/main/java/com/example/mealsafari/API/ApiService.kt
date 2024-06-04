@@ -2,6 +2,7 @@ package com.example.mealsafari.API
 
 import com.example.mealsafari.ui.Data.CategoryList
 import com.example.mealsafari.ui.Data.MealList
+import com.example.mealsafari.ui.Data.PopularList
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -42,7 +43,7 @@ interface ApiService {
      * @return Eine [MealList] mit den beliebten Artikeln in der angegebenen Kategorie.
      */
     @GET("filter.php?")
-    suspend fun getPopularItem(@Query("c") category: String): MealList
+    suspend fun getPopularItem(@Query("c") category: String): PopularList
 
     /**
      * Endpunkt für alle Mahlzeitenkategorien.
@@ -65,7 +66,7 @@ interface ApiService {
      * @return Eine [MealList] mit der Mahlzeit, die der angegebenen ID entspricht.
      */
     @GET("lookup.php?")
-    fun getMealById(@Query("i") id: Long): MealList
+   suspend fun getMealById(@Query("i") id: String): MealList
 
     /**
      * Endpunkt für die Suche nach Mahlzeiten anhand eines Suchbegriffs.

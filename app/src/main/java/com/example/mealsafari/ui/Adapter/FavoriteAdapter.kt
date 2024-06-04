@@ -1,5 +1,6 @@
 package com.example.mealsafari.ui.Adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -9,6 +10,8 @@ import coil.load
 import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.FavoriteItemBinding
+import com.example.mealsafari.ui.fragment.CategoryResultsFragmentDirections
+import com.example.mealsafari.ui.fragment.FavoriteFragmentDirections
 import syntax.com.playground.data.model.meal.Meal
 
 /**
@@ -45,17 +48,30 @@ class FavoriteAdapter(private var favoriteMeals: List<Meal>, var viewModel: View
         // Klick-Listener für das Favoriten-Mahlzeitenelement
         holder.binding.root.setOnClickListener {
             // Navigation zum Detailbildschirm für die Mahlzeit
+            holder.itemView.findNavController()
+                .navigate(FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment(meal.idMeal).setMealId(meal.idMeal))
+            viewModel.setMeal(meal)
+        }
+    /*    holder.binding.root.setOnClickListener {
+            // Navigation zum Detailbildschirm für die Mahlzeit
             holder.itemView.findNavController().navigate(R.id.action_favoriteFragment_to_detailFragment)
             // Übergeben der Mahlzeitendaten an das ViewModel
             viewModel.setMeal(meal)
-        }
+        }*/
+
+
+        // Navigation zum Detailbildschirm für die Mahlzeit
 
         // Klick-Listener für das Löschen-Symbol
         holder.binding.ivDelete.setOnClickListener {
             // Entfernen der Mahlzeit aus den Favoriten
             viewModel.removeFromFavorites(meal)
             // Anzeige einer Toast-Nachricht zur Bestätigung der Entfernung
-            Toast.makeText(holder.itemView.context, "${meal.name} removed from favorites", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                holder.itemView.context,
+                "${meal.name} removed from favorites",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }

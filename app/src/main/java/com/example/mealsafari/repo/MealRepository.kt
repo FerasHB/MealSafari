@@ -8,6 +8,7 @@ import com.example.mealsafari.API.MealApi
 import com.example.mealsafari.room.MealDatabase
 import com.example.mealsafari.ui.Data.Category
 import com.example.mealsafari.ui.Data.Note
+import com.example.mealsafari.ui.Data.PopularMeal
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.withContext
@@ -32,8 +33,8 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
         get() = _randomMeal
 
     // MutableLiveData und LiveData für beliebte Mahlzeiten
-    private var _mealPopular = MutableLiveData<List<Meal>>()
-    val mealPopular: LiveData<List<Meal>>
+    private var _mealPopular = MutableLiveData<List<PopularMeal>>()
+    val mealPopular: LiveData<List<PopularMeal>>
         get() = _mealPopular
 
     // MutableLiveData und LiveData für Mahlzeiten nach Kategorien
@@ -54,6 +55,10 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     // LiveData für Mahlzeitendetails
     private val _mealDetails = MutableLiveData<Meal>()
     val mealDetails: LiveData<Meal> = _mealDetails
+
+
+    private val _favoriteMeal = MutableLiveData<List<Meal>>()
+    val favoriteMeal = _favoriteMeal
 
     /**
      * Speichert eine Notiz in der Datenbank.
@@ -159,8 +164,8 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
      * @param mealId Die ID der Mahlzeit.
      * @return Die gefundene Mahlzeit oder null.
      */
-     fun getMealById(mealId: Long) {
-       try {
+    suspend fun getMealById(mealId: String) {
+        try {
             val result = apiService.retrofitService.getMealById(mealId)
             _mealDetails.postValue(result.meals.firstOrNull())
         } catch (e: Exception) {
@@ -184,7 +189,6 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     fun setMeal(meal: Meal) {
         _randomMeal.value = meal
     }
-
 
 
     /**

@@ -1,6 +1,8 @@
 package com.example.mealsafari.ui.fragment
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,16 +39,29 @@ class HomeFragment : Fragment() {
     // Diese Methode wird aufgerufen, sobald die View für dieses Fragment erstellt wurde.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val mealId = arguments?.getLong("mealId") ?: 0L
         // Laden des zufälligen Essens, aller Mahlzeitenkategorien und beliebter Mahlzeiten
         viewModel.loadRandomMeal()
         viewModel.loadAllMealCategories()
         viewModel.loadPopularMeal("Dessert")
 
+
+
         // Beobachten des LiveData-Objekts meals aus dem ViewModel
         viewModel.meals.observe(viewLifecycleOwner) { mealObj: Meal ->
             // Laden des Bildes des zufälligen Essens in das ImageView
             binding.imgRandomMeal.load(mealObj.image)
+                    // viewModel.setMeal(mealObj)
+
+
+        }
+
+        // Klicken auf das Zufällige-Essen-Kartenlayout
+        binding.randomMealCard.setOnClickListener {
+            // Navigieren zur Detailansicht des zufälligen Essens
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(mealId))
+
+            Log.e(ContentValues.TAG, "RandomMeal: Error in Api:")
         }
 
         // Klicken auf die Such-Schaltfläche
@@ -55,11 +70,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.searchFragment)
         }
 
-        // Klicken auf das Zufällige-Essen-Kartenlayout
-        binding.randomMealCard.setOnClickListener {
-            // Navigieren zur Detailansicht des zufälligen Essens
-            findNavController().navigate(R.id.detailFragment)
-        }
+
 
         // Beobachten des LiveData-Objekts popularMeal aus dem ViewModel
         viewModel.popularMeal.observe(viewLifecycleOwner) { popularMeals ->

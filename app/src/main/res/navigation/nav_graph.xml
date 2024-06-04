@@ -35,8 +35,9 @@
         android:label="DetailFragment" >
 
         <argument
-            android:name="detail"
-            app:argType="syntax.com.playground.data.model.meal.Meal" />
+            android:name="mealId"
+            app:argType="long"
+           />
     </fragment>
     <fragment
         android:id="@+id/categoryMealsFragment"
@@ -51,7 +52,7 @@
         android:name="com.example.mealsafari.ui.fragment.CategoryResultsFragment"
         android:label="CategoryDetailFragment" >
         <argument
-            android:name="STATUS"
+            android:name="mealId"
             app:argType="string"
             android:defaultValue='""' />
         <action

@@ -9,6 +9,7 @@ import coil.load
 import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.MealsResultsItemBinding
+import com.example.mealsafari.ui.fragment.CategoryResultsFragmentDirections
 import syntax.com.playground.data.model.meal.Meal
 
 /**
@@ -42,16 +43,16 @@ class CategoryResultsAdapter(private val mealList: List<Meal>, val viewModel: Vi
         holder.binding.imgCategory.load(meal.image)
         holder.binding.tvCategoryBtmsheetName.text = meal.name
 
-        // Erstellen eines Bundle-Objekts und Hinzufügen der Mahlzeitendaten
-        val bundle = Bundle()
-        bundle.putSerializable("detail", meal)
+
 
         // Klick-Listener für das Mahlzeitenelement
         holder.binding.root.setOnClickListener {
             // Navigation zum Detailbildschirm für die Mahlzeit
-            holder.itemView.findNavController().navigate(R.id.action_categoryDetailFragment_to_detailFragment3)
+            holder.itemView.findNavController().navigate(CategoryResultsFragmentDirections.actionCategoryDetailFragmentToDetailFragment3(meal.idMeal))
             // Übergeben der Mahlzeitendaten an das ViewModel
-            viewModel.setMeal(meal)
+            // Laden der Mahlzeiten nach Kategorie
+           // viewModel.loadMealByCategory("category")
+           // viewModel.setMeal(meal)
         }
     }
 }

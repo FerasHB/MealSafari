@@ -37,6 +37,10 @@ interface DataDao {
     @Query("DELETE FROM meal_information WHERE idMeal = :id")
     fun deleteMealById(id: Long)
 
+
+
+
+
     // Einfügen einer Notiz in die Datenbank
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNote(note: Note)

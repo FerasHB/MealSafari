@@ -45,7 +45,11 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     // LiveData für alle Mahlzeiten
     val allMeals = repository.allMeals
 
-    val mealId = repository.mealDetails
+
+    val mealDetail = repository.mealDetails
+
+
+    val favoriteMeal = repository.favoriteMeal
 
     // LiveData für bevorzugte Mahlzeiten
     private val _favoriteMeals = MutableLiveData<List<Meal>>()
@@ -164,7 +168,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
      * Methode zum Abrufen von Mahlzeiten anhand der ID.
      * @param mealId Die ID der abzurufenden Mahlzeit.
      */
-    fun getMealById(mealId: Long) {
+    fun getMealById(mealId: String) {
         viewModelScope.launch {
             repository.getMealById(mealId)
             }

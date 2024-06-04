@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import coil.load
 import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.FragmentDetailBinding
+import com.example.mealsafari.ui.Data.PopularMeal
 import syntax.com.playground.data.model.meal.Meal
 
 class DetailFragment : Fragment() {
@@ -39,13 +41,12 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mealId = arguments?.getLong("mealId") ?: 0L
-
-        viewModel.getMealById(mealId)
-
+        Log.i("mealId", mealId.toString())
+        viewModel.getMealById(mealId.toString())
 
 
         // Beobachten es LiveData-Objekts randomMeal aus dem ViewModel
-        viewModel.meals.observe(viewLifecycleOwner) { mealObj: Meal ->
+        viewModel.mealDetail.observe(viewLifecycleOwner) { mealObj: Meal ->
             // Laden des Bildes in das ImageView
             binding.imgMealDetail.load(mealObj.image)
 
@@ -60,6 +61,17 @@ class DetailFragment : Fragment() {
             // Setzen der Textfarben für den CollapsingToolbarLayout
             binding.collapsingToolbar.setCollapsedTitleTextColor(resources.getColor(R.color.white))
             binding.collapsingToolbar.setExpandedTitleColor(resources.getColor(R.color.black))
+
+
+            // OnClickListener für die Schaltfläche "Speichern", um das Mahlzeitobjekt zu den Favoriten hinzuzufügen
+            binding.btnSave.setOnClickListener {
+                // saveMeal(viewModel.meals.value!!)
+                saveMeal(mealObj)
+                // Aktualisieren des Bilds der Speichern-Schaltfläche und Anzeige einer Toast-Nachricht
+                binding.btnSave.setImageResource(R.drawable.ic_saved)
+                Toast.makeText(requireContext(), "Meal saved", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
         // OnClickListener für das YouTube-Icon, um das Video zu öffnen
@@ -71,13 +83,7 @@ class DetailFragment : Fragment() {
             startActivity(intent)
         }
 
-        // OnClickListener für die Schaltfläche "Speichern", um das Mahlzeitobjekt zu den Favoriten hinzuzufügen
-        binding.btnSave.setOnClickListener {
-            saveMeal(viewModel.meals.value!!)
-            // Aktualisieren des Bilds der Speichern-Schaltfläche und Anzeige einer Toast-Nachricht
-            binding.btnSave.setImageResource(R.drawable.ic_saved)
-            Toast.makeText(requireContext(), "Meal saved", Toast.LENGTH_SHORT).show()
-        }
+
     }
 
     // Methode zum Speichern der Mahlzeit in den Favoriten

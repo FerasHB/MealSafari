@@ -11,6 +11,7 @@ import coil.load
 import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.ItemSearchResultBinding
+import com.example.mealsafari.ui.fragment.SearchFragmentDirections
 import syntax.com.playground.data.model.meal.Meal
 
 /**
@@ -40,6 +41,7 @@ class SearchAdapter(
     // Binden der Daten an die View des ViewHolders
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val result = dataset[position]
+
         // Laden des Bilds für die Mahlzeit und Setzen des Namens, der Kategorie und des Bereichs
         holder.binding.ivMela.load(result.image)
         holder.binding.tvMealName.text = result.name
@@ -53,11 +55,11 @@ class SearchAdapter(
             bundle.putSerializable("detail", result)
             // Navigation zum Detailbildschirm für die Mahlzeit
             holder.itemView.findNavController()
-                .navigate(R.id.action_searchFragment_to_detailFragment, bundle)
+                .navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(result.idMeal))
             // Loggen eines Fehlers, wenn Daten nicht geladen werden können (kann entfernt werden, wenn nicht benötigt)
-            Log.e(ContentValues.TAG, "Error loading Data from API Search: ")
+           // Log.e(ContentValues.TAG, "Error loading Data from API Search: ")
             // Setzen der ausgewählten Mahlzeit im ViewModel
-            viewModel.setMeal(result)
+           // viewModel.setMeal(result)
         }
     }
 }

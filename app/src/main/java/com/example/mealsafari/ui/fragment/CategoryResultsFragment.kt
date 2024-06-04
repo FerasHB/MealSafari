@@ -23,8 +23,6 @@ class CategoryResultsFragment : Fragment() {
         // Aufblasen des Layouts für dieses Fragment
         binding = CategoryResultsFragmentBinding.inflate(inflater)
 
-        // Laden der Mahlzeiten nach Kategorie
-        viewModel.loadMealByCategory("")
 
         // Rückgabe der aufgeblasenen Ansicht
         return binding.root

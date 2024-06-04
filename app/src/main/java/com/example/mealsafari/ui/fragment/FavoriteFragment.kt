@@ -18,8 +18,7 @@ import syntax.com.playground.data.model.meal.Meal
 
 class FavoriteFragment : Fragment() {
     private lateinit var binding: FavoriteFragmentBinding
-    private lateinit var favoriteAdapter: FavoriteAdapter
-    lateinit var recView:RecyclerView
+
     val viewModel: ViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -43,6 +42,7 @@ class FavoriteFragment : Fragment() {
 
             // Aktualisieren des RecyclerView-Adapters mit den Favoriten-Mahlzeiten
             binding.favRecView.adapter = FavoriteAdapter(favoriteMeals, viewModel)
+
         }
     }
 
