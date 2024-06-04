@@ -30,23 +30,6 @@ class DetailFragment : Fragment() {
         binding = FragmentDetailBinding.inflate(inflater)
         viewModel = ViewModelProvider(requireActivity()).get(ViewModel::class.java)
 
-        // LiveData für Mahldetails beobachten und die Ansichten aktualisieren
-        /*viewModel.mealDetails.observe(viewLifecycleOwner, Observer { meal ->
-            meal?.let {
-                binding.collapsingToolbar.title = it.name
-                binding.tvCategoryInfo.text = it.category
-                binding.tvCategoryArea.text = it.area
-                binding.tvInstructions.text = it.instruction
-                binding.imgMealDetail.load(it.image)
-                // Optional: Lade das Video oder andere Details
-                binding.imgYoutube.setOnClickListener {
-                    val intent = Intent(ACTION_VIEW, Uri.parse(viewModel.meals.value!!.video))
-
-                    // Starten des Intents
-                    startActivity(intent)
-                }
-            }
-        })*/
 
         // Rückgabe der aufgeblasenen Ansicht
         return binding.root
