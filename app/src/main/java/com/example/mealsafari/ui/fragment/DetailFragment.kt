@@ -58,7 +58,7 @@ class DetailFragment : Fragment() {
         val mealId = arguments?.getLong("mealId") ?: 0L
 
         viewModel.getMealById(mealId)
-        viewModel.setMEalById(mealId)
+
 
 
         // Beobachten es LiveData-Objekts randomMeal aus dem ViewModel
