@@ -18,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -29,11 +30,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:layout_width="39dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/category"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_Category_Count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/myfont"
         android:text="Categories"
         android:textColor="@color/black"
@@ -47,8 +57,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_meals_Category"
         android:layout_width="match_parent"
-        android:layout_height="604dp"
-        android:layout_marginTop="4dp"
+        android:layout_height="667dp"
+        android:layout_marginTop="16dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

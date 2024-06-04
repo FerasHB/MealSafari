@@ -22,21 +22,27 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: ViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Layout-Bindung initialisieren und Layout setzen
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Rücktaste-Handling einrichten
         handleOnBackPressed()
 
+        // BottomNavigationView initialisieren und Hintergrundfarbe festlegen
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setBackgroundColor(ContextCompat.getColor(this, R.color.orang))
 
-
+        // NavHostFragment und NavController initialisieren
         val navHost = supportFragmentManager.findFragmentById(R.id.fragmentContainerViewWelcome) as NavHostFragment
         binding.bottomNavigationView.setupWithNavController(navHost.navController)
 
-        viewModel = ViewModelProvider(this)[ViewModel::class.java]
+        // ViewModel initialisieren
+      //  viewModel = ViewModelProvider(this)[ViewModel::class.java]
 
-
+        // Listener für Zielwechsel hinzufügen
         navHost.navController.addOnDestinationChangedListener { _, destination, _ ->
+            // Die Sichtbarkeit der Bottom Navigation View basierend auf dem aktuellen Ziel einstellen
             when (destination.id) {
                 R.id.welcomeFragment -> binding.bottomNavigationView.visibility = View.GONE
                 R.id.detailFragment -> binding.bottomNavigationView.visibility = View.GONE
@@ -48,15 +54,18 @@ class MainActivity : AppCompatActivity() {
                 else -> binding.bottomNavigationView.visibility = View.VISIBLE
             }
         }
+        // Nachtmodus auf Systemeinstellungen festlegen
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
 
     }
 
 
+    // Benutzerdefiniertes Rücktaste-Handling
     private fun handleOnBackPressed() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                // Zurück-Navigation durchführen
                 binding.fragmentContainerViewWelcome.findNavController().navigateUp()
             }
         }

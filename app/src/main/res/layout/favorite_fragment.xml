@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
    >
+
     <ImageView
         android:id="@+id/ivMelas"
         android:layout_width="match_parent"
@@ -29,25 +30,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/favorite_icon"
+        app:layout_constraintBottom_toTopOf="@+id/fav_rec_view"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@+id/ivMelas"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/tv_fav_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Favorites "
         android:textColor="@color/black"
-        android:textSize="@dimen/_18sdp"
+        android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.018" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fav_rec_view"
-        android:layout_width="match_parent"
-        android:layout_height="608dp"
+        android:layout_width="413dp"
+        android:layout_height="671dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

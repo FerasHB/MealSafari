@@ -36,34 +36,13 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-            ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT){
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            )=true
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-               val position = viewHolder.adapterPosition
-               val favoriteMeal = favoriteAdapter.getMelaByPosition(position)
-                viewModel.removeFromFavorites(favoriteMeal)
 
 
-
-            }
-
-        }
-        //ItemTouchHelper(itemTouchHelper).attachToRecyclerView()
-
-
-
+        // Beobachten des LiveData-Objekts allMeals aus dem ViewModel
         viewModel.allMeals.observe(viewLifecycleOwner) { favoriteMeals ->
 
+            // Aktualisieren des RecyclerView-Adapters mit den Favoriten-Mahlzeiten
             binding.favRecView.adapter = FavoriteAdapter(favoriteMeals, viewModel)
-
-
         }
     }
 

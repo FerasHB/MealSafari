@@ -9,22 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import coil.load
 import com.example.mealsafari.ViewModel
 import com.example.mealsafari.R
 import com.example.mealsafari.databinding.FragmentDetailBinding
-import com.google.android.material.snackbar.Snackbar
 import syntax.com.playground.data.model.meal.Meal
-import kotlin.math.log10
 
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     private lateinit var viewModel: ViewModel
-
 
     // Diese Methode wird aufgerufen, um die View für dieses Fragment zu erstellen.
     override fun onCreateView(
@@ -36,7 +30,8 @@ class DetailFragment : Fragment() {
         binding = FragmentDetailBinding.inflate(inflater)
         viewModel = ViewModelProvider(requireActivity()).get(ViewModel::class.java)
 
-       /* viewModel.mealDetails.observe(viewLifecycleOwner, Observer { meal ->
+        // LiveData für Mahldetails beobachten und die Ansichten aktualisieren
+        /*viewModel.mealDetails.observe(viewLifecycleOwner, Observer { meal ->
             meal?.let {
                 binding.collapsingToolbar.title = it.name
                 binding.tvCategoryInfo.text = it.category
@@ -52,15 +47,21 @@ class DetailFragment : Fragment() {
                 }
             }
         })*/
+
+        // Rückgabe der aufgeblasenen Ansicht
         return binding.root
     }
 
     // Diese Methode wird aufgerufen, sobald die View für dieses Fragment erstellt wurde.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mealId = arguments?.getLong("mealId") ?: 0L
+
+        viewModel.getMealById(mealId)
+        viewModel.setMEalById(mealId)
 
 
-        // Beobachten Sie das LiveData-Objekt randomMeal aus dem ViewModel
+        // Beobachten es LiveData-Objekts randomMeal aus dem ViewModel
         viewModel.meals.observe(viewLifecycleOwner) { mealObj: Meal ->
             // Laden des Bildes in das ImageView
             binding.imgMealDetail.load(mealObj.image)
@@ -76,11 +77,9 @@ class DetailFragment : Fragment() {
             // Setzen der Textfarben für den CollapsingToolbarLayout
             binding.collapsingToolbar.setCollapsedTitleTextColor(resources.getColor(R.color.white))
             binding.collapsingToolbar.setExpandedTitleColor(resources.getColor(R.color.black))
-
-
-
         }
 
+        // OnClickListener für das YouTube-Icon, um das Video zu öffnen
         binding.imgYoutube.setOnClickListener {
             // Erstellen eines Intent, um das YouTube-Video zu öffnen
             val intent = Intent(ACTION_VIEW, Uri.parse(viewModel.meals.value!!.video))
@@ -89,20 +88,17 @@ class DetailFragment : Fragment() {
             startActivity(intent)
         }
 
-
+        // OnClickListener für die Schaltfläche "Speichern", um das Mahlzeitobjekt zu den Favoriten hinzuzufügen
         binding.btnSave.setOnClickListener {
-                saveMeal(viewModel.meals.value!!)
-                binding.btnSave.setImageResource(R.drawable.ic_saved)
-                Toast.makeText(requireContext(), "Meal saved", Toast.LENGTH_SHORT).show()
-
+            saveMeal(viewModel.meals.value!!)
+            // Aktualisieren des Bilds der Speichern-Schaltfläche und Anzeige einer Toast-Nachricht
+            binding.btnSave.setImageResource(R.drawable.ic_saved)
+            Toast.makeText(requireContext(), "Meal saved", Toast.LENGTH_SHORT).show()
         }
-
     }
 
-
+    // Methode zum Speichern der Mahlzeit in den Favoriten
     private fun saveMeal(meal: Meal) {
         viewModel.addToFavorites(meal)
     }
-
-
 }

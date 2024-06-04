@@ -1,6 +1,5 @@
 package com.example.mealsafari.ui.fragment
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,55 +17,66 @@ import syntax.com.playground.data.model.meal.Meal
 
 class HomeFragment : Fragment() {
 
-
+    // Deklaration der Variablen
     private lateinit var binding: HomeFragmentBinding
     private val viewModel: ViewModel by activityViewModels()
+
+    // Diese Methode wird aufgerufen, um die View für dieses Fragment zu erstellen.
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Das Binding-Objekt für das Fragment erstellen
         binding = HomeFragmentBinding.inflate(inflater)
 
+        // Rückgabe der aufgeblasenen Ansicht
         return binding.root
-
     }
 
+    // Diese Methode wird aufgerufen, sobald die View für dieses Fragment erstellt wurde.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Laden des zufälligen Essens, aller Mahlzeitenkategorien und beliebter Mahlzeiten
         viewModel.loadRandomMeal()
         viewModel.loadAllMealCategories()
         viewModel.loadPopularMeal("Dessert")
 
-
-
+        // Beobachten des LiveData-Objekts meals aus dem ViewModel
         viewModel.meals.observe(viewLifecycleOwner) { mealObj: Meal ->
+            // Laden des Bildes des zufälligen Essens in das ImageView
             binding.imgRandomMeal.load(mealObj.image)
         }
+
+        // Klicken auf die Such-Schaltfläche
         binding.ivSearch.setOnClickListener {
+            // Navigieren zur Suchansicht
             findNavController().navigate(R.id.searchFragment)
         }
 
+        // Klicken auf das Zufällige-Essen-Kartenlayout
         binding.randomMealCard.setOnClickListener {
+            // Navigieren zur Detailansicht des zufälligen Essens
             findNavController().navigate(R.id.detailFragment)
         }
 
+        // Beobachten des LiveData-Objekts popularMeal aus dem ViewModel
         viewModel.popularMeal.observe(viewLifecycleOwner) { popularMeals ->
-
+            // Aktualisieren des RecyclerView-Adapters mit den beliebten Mahlzeiten
             binding.recViewMealPopular.adapter = PopularAdapter(popularMeals, viewModel)
         }
 
-        viewModel.getMealsByCategory.observe(viewLifecycleOwner) {
-
-            binding.recViewCategories.adapter = CategoryHomeAdapter(it, viewModel)
+        // Beobachten des LiveData-Objekts getMealsByCategory aus dem ViewModel
+        viewModel.getMealsByCategory.observe(viewLifecycleOwner) { mealCategories ->
+            // Aktualisieren des RecyclerView-Adapters mit den Mahlzeitenkategorien
+            binding.recViewCategories.adapter = CategoryHomeAdapter(mealCategories, viewModel)
         }
 
+        // Klicken auf den RecyclerView für die Mahlzeitenkategorien
         binding.recViewCategories.setOnClickListener {
+            // Navigieren zur Fragment für Mahlzeitenkategorien
             findNavController().navigate(R.id.categoryMealsFragment)
         }
-
-
     }
-
-
 }

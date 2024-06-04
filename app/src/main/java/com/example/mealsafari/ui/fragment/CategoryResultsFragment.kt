@@ -14,25 +14,28 @@ class CategoryResultsFragment : Fragment() {
     private lateinit var binding: CategoryResultsFragmentBinding
     private val viewModel: ViewModel by activityViewModels()
 
-
+    // Wird aufgerufen, um die Ansicht für dieses Fragment zu erstellen
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        // Aufblasen des Layouts für dieses Fragment
         binding = CategoryResultsFragmentBinding.inflate(inflater)
 
+        // Laden der Mahlzeiten nach Kategorie
         viewModel.loadMealByCategory("")
 
+        // Rückgabe der aufgeblasenen Ansicht
         return binding.root
     }
 
+    // Wird aufgerufen, nachdem die Ansicht für dieses Fragment erstellt wurde
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.allMealCategories.observe(viewLifecycleOwner) {
-            binding.rvMealsByCat.adapter = CategoryResultsAdapter(it, viewModel)
-
+        // Beobachten der Liste aller Mahlzeitenkategorien
+        viewModel.allMealCategories.observe(viewLifecycleOwner) { categories ->
+            // Aktualisieren des RecyclerView-Adapters mit den neuen Mahlzeitenkategorien
+            binding.rvMealsByCat.adapter = CategoryResultsAdapter(categories, viewModel)
         }
-
     }
 }
