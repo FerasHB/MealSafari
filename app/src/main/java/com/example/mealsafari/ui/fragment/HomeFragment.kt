@@ -46,30 +46,28 @@ class HomeFragment : Fragment() {
         viewModel.loadPopularMeal("Dessert")
 
 
-
         // Beobachten des LiveData-Objekts meals aus dem ViewModel
         viewModel.meals.observe(viewLifecycleOwner) { mealObj: Meal ->
             // Laden des Bildes des zufälligen Essens in das ImageView
             binding.imgRandomMeal.load(mealObj.image)
-                    // viewModel.setMeal(mealObj)
-
-
+            // Klicken auf das Zufällige-Essen-Kartenlayout
+            binding.randomMealCard.setOnClickListener {
+                // Navigieren zur Detailansicht des zufälligen Essens
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment()
+                        .setMealId(mealObj.idMeal)
+                )
+                Log.e(ContentValues.TAG, "RandomMeal: Error Load Data from Api:")
+            }
         }
 
-        // Klicken auf das Zufällige-Essen-Kartenlayout
-        binding.randomMealCard.setOnClickListener {
-            // Navigieren zur Detailansicht des zufälligen Essens
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(mealId))
 
-            Log.e(ContentValues.TAG, "RandomMeal: Error in Api:")
-        }
 
         // Klicken auf die Such-Schaltfläche
         binding.ivSearch.setOnClickListener {
             // Navigieren zur Suchansicht
             findNavController().navigate(R.id.searchFragment)
         }
-
 
 
         // Beobachten des LiveData-Objekts popularMeal aus dem ViewModel

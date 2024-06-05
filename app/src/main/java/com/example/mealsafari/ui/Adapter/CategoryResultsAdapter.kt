@@ -48,7 +48,7 @@ class CategoryResultsAdapter(private val mealList: List<Meal>, val viewModel: Vi
         // Klick-Listener für das Mahlzeitenelement
         holder.binding.root.setOnClickListener {
             // Navigation zum Detailbildschirm für die Mahlzeit
-            holder.itemView.findNavController().navigate(CategoryResultsFragmentDirections.actionCategoryDetailFragmentToDetailFragment3(meal.idMeal))
+            holder.itemView.findNavController().navigate(CategoryResultsFragmentDirections.actionCategoryDetailFragmentToDetailFragment3().setMealId(meal.idMeal))
             // Übergeben der Mahlzeitendaten an das ViewModel
             // Laden der Mahlzeiten nach Kategorie
            // viewModel.loadMealByCategory("category")

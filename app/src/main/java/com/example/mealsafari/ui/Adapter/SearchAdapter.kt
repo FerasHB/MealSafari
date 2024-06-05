@@ -55,7 +55,7 @@ class SearchAdapter(
             bundle.putSerializable("detail", result)
             // Navigation zum Detailbildschirm für die Mahlzeit
             holder.itemView.findNavController()
-                .navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(result.idMeal))
+                .navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment().setMealId(result.idMeal))
             // Loggen eines Fehlers, wenn Daten nicht geladen werden können (kann entfernt werden, wenn nicht benötigt)
            // Log.e(ContentValues.TAG, "Error loading Data from API Search: ")
             // Setzen der ausgewählten Mahlzeit im ViewModel

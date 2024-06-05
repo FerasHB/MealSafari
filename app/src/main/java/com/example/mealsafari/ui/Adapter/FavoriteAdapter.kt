@@ -49,7 +49,7 @@ class FavoriteAdapter(private var favoriteMeals: List<Meal>, var viewModel: View
         holder.binding.root.setOnClickListener {
             // Navigation zum Detailbildschirm für die Mahlzeit
             holder.itemView.findNavController()
-                .navigate(FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment(meal.idMeal).setMealId(meal.idMeal))
+                .navigate(FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment().setMealId(meal.idMeal))
             viewModel.setMeal(meal)
         }
     /*    holder.binding.root.setOnClickListener {

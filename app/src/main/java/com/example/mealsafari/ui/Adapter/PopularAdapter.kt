@@ -54,9 +54,9 @@ class PopularAdapter(val meals: List<PopularMeal>, val viewModel: ViewModel) :
            // bundle.putSerializable("detail", mealPopular)
             // Navigation zum Detailbildschirm für die Mahlzeit
             holder.itemView.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(mealPopular.idMeal))
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment().setMealId(mealPopular.idMeal))
             // Loggen eines Fehlers, wenn Daten nicht geladen werden können (kann entfernt werden, wenn nicht benötigt)
-            Log.e(ContentValues.TAG, "Error loading Data from API Search: ")
+            Log.e(ContentValues.TAG, "Error loading Data from API: ")
 
         }
     }

@@ -115,9 +115,9 @@ class MealRepository(private val apiService: MealApi, val dataBase: MealDatabase
     suspend fun getRandomMeal() {
         try {
             val result = apiService.retrofitService.getRandomMeal()
-            _randomMeal.postValue(result.meals.random())
+            _randomMeal.postValue(result.meals.first())
         } catch (e: Exception) {
-            Log.e(TAG, "getRandomMeal: Error loading Data from API: $e")
+            Log.e(TAG, "Error loading Data from API getRandomMeal(): $e")
         }
     }
 
