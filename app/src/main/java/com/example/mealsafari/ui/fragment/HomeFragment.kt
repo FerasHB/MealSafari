@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         // Laden des zufälligen Essens, aller Mahlzeitenkategorien und beliebter Mahlzeiten
         viewModel.loadRandomMeal()
         viewModel.loadAllMealCategories()
-        viewModel.loadPopularMeal("Dessert")
+        viewModel.loadPopularMeal("Lamb")
 
 
         // Beobachten des LiveData-Objekts meals aus dem ViewModel
